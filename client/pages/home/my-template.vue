@@ -173,8 +173,6 @@
 </script>
 
 <style lang="scss" scoped>
-  .my-page-list {
-  }
 
   .page-item {
     width: 224px;
@@ -232,7 +230,7 @@
     }
     .page-item-title {
       .item-title-i {
-        display: inline-block;
+        // display: inline-block;
         width: 85%;
         font-size: 14px;
         height: 36px;

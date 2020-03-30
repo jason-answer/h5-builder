@@ -210,7 +210,7 @@
     }
     .page-item-title {
       .item-title-i {
-        display: inline-block;
+        // display: inline-block;
         width: 85%;
         font-size: 14px;
         height: 36px;
