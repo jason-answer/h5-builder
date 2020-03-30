@@ -212,10 +212,10 @@
   .components-edit-shape {
     cursor: move;
     &.active {
-      outline: 1px dashed #25A589;
+      outline: 1px dashed #1890ff;
     }
     &:hover {
-      outline: 1px dashed #25A589;
+      outline: 1px dashed #1890ff;
     }
   }
 </style>
