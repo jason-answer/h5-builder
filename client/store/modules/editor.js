@@ -1,5 +1,5 @@
 
-import { cloneDeep, merge } from 'lodash'
+import * as _ from 'lodash'
 import editorProjectConfig from '@client/pages/editor/DataModel'
 
 /**
@@ -29,6 +29,7 @@ const actions = {
 	 * @param data
 	 */
   setPrjectData({ commit, state, dispatch }, data) {
+    debugger
     let projectData = data;
     if (!projectData) {
       projectData = editorProjectConfig.getProjectConfig()
@@ -136,6 +137,7 @@ const actions = {
       data = data = editorProjectConfig.getElementConfig(elData, {})
     }
     commit('addElement', data);
+    commit('resetEditorHeight');
     commit('setActiveElementUUID', data.uuid)
     commit('addHistoryCache')
   },
@@ -188,6 +190,7 @@ const actions = {
     let activePage = getters.activePage(state)
     let data = editorProjectConfig.copyElement(copyOrignData, { zIndex: activePage.elements.length + 1 })
     commit('addElement', data);
+    commit('resetEditorHeight');
     commit('setActiveElementUUID', data.uuid)
     commit('addHistoryCache')
   },
@@ -200,6 +203,7 @@ const actions = {
     commit('resetElementZIndex', { uuid: uuid, type: 'set0' })
 
     commit('deleteElement', uuid)
+    commit('resetEditorHeight');
     commit('addHistoryCache')
   },
   resetElementCommonStyle({ commit }, style) {
@@ -271,7 +275,7 @@ const actions = {
       return;
     }
     const prevState = state.historyCache[state.currentHistoryIndex - 1]
-    commit('relapceEditorState', cloneDeep(prevState))
+    commit('relapceEditorState', _.cloneDeep(prevState))
     commit('editorUndo')
   },
   editorRedo({ commit }) {
@@ -279,13 +283,24 @@ const actions = {
       return;
     }
     const prevState = state.historyCache[state.currentHistoryIndex + 1]
-    commit('relapceEditorState', cloneDeep(prevState))
+    commit('relapceEditorState', _.cloneDeep(prevState))
     commit('editorRedo')
   }
 };
 const mutations = {
   setPrjectData(state, data) {
     state.projectData = data;
+    if (state.projectData.pageMode !== 'h5') {
+      let editorHeight = 0;
+      _(state.projectData.pages[0].elements).forEach(function(value) {
+        editorHeight = editorHeight + value.commonStyle.height;
+      });
+
+      if (editorHeight > state.projectData.height) {
+        state.projectData.height = editorHeight + 20;
+      }
+
+    }
   },
   setActivePageUUID(state, data) {
     state.activePageUUID = data;
@@ -327,7 +342,9 @@ const mutations = {
 	 */
   addElement(state, elData) {
     let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID })
+
     state.projectData.pages[index].elements.push(elData);
+    
   },
 	/**
 	 * 往画板添加元素
@@ -347,7 +364,7 @@ const mutations = {
 	 */
   resetElementCommonStyle(state, style) {
     let activeElement = getters.activeElement(state)
-    activeElement.commonStyle = merge(activeElement.commonStyle, style)
+    activeElement.commonStyle = _.merge(activeElement.commonStyle, style)
   },
 
 	/**
@@ -440,7 +457,7 @@ const mutations = {
       state.historyCache.splice(state.currentHistoryIndex + 1)
     }
     state.historyCache.push({
-      projectData: cloneDeep(state.projectData),
+      projectData: _.cloneDeep(state.projectData),
       activePageUUID: state.activePageUUID,
       activeElementUUID: state.activeElementUUID
     })
@@ -468,7 +485,7 @@ const mutations = {
 	 * @param data
 	 */
   relapceEditorState(state, data) {
-    state.projectData = cloneDeep(data.projectData)
+    state.projectData = _.cloneDeep(data.projectData)
     state.activePageUUID = data.activePageUUID
     state.activeElementUUID = data.activeElementUUID
   },
@@ -479,6 +496,24 @@ const mutations = {
 	 */
   updateActiveAttrEditCollapse(state, data) {
     state.activeAttrEditCollapse = [...data];
+  },
+  /**
+   * 当添加组件的是时候 重新设置画板的高度
+   */
+  resetEditorHeight(state){
+    let editorHeight = 0;
+    let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID })
+    _(state.projectData.pages[index].elements).forEach(function(value) {
+      editorHeight = editorHeight + value.commonStyle.height;
+    });
+    debugger
+    if (editorHeight > editorProjectConfig.projectConfig.height) {
+      // 增加10px的增量像素
+      state.projectData.height = editorHeight + 10;
+    }else{
+      state.projectData.height = editorProjectConfig.projectConfig.height;
+    }
+    console.log(editorHeight);
   }
 };
 const getters = {
