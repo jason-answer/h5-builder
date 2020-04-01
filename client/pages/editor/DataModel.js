@@ -6,7 +6,7 @@ let elementConfig = {
 	elName: '', // 组件名
 	animations: [], // 动画
 	commonStyle: {
-		position: 'absolute',
+		// position: 'absolute',
 		width: $config.canvasH5Width,
 		height: 30,
 		top: 200,

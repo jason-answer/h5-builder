@@ -108,11 +108,5 @@
       border: 1px solid $primary;
       color: $primary;
     }
-    .lib-item-img {
-
-    }
-    .lib-item-title {
-
-    }
   }
 </style>

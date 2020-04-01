@@ -127,8 +127,14 @@ const actions = {
 	 * @param data
 	 */
 	addElement({commit}, elData){
-		let activePage = getters.activePage(state)
-		let data = editorProjectConfig.getElementConfig(elData, {zIndex: activePage.elements.length + 1})
+    let activePage = getters.activePage(state)
+    let pageMode = getters.pageMode(state)
+    let data = {};
+    if (pageMode === 'h5'){
+      data = editorProjectConfig.getElementConfig(elData, { position: 'absolute', zIndex: activePage.elements.length + 1 })
+    }else{
+      data = data = editorProjectConfig.getElementConfig(elData, {})
+    }
 		commit('addElement', data);
 		commit('setActiveElementUUID', data.uuid)
 		commit('addHistoryCache')
@@ -513,7 +519,7 @@ const getters = {
 			return {commonStyle: {}, config: {}};
 		}
 		return state.projectData.pages.find(v => {return v.uuid === state.activePageUUID})
-	},
+  },
 	/**
 	 * 当前选中元素
 	 */
