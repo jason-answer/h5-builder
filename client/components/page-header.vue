@@ -1,7 +1,7 @@
 <template>
   <div class="components-page-header">
     <div class="logo-wrapper cursor-pointer" @click="$router.push('/')">
-      <img src="../common/images/logo.png" alt="">
+      <img src="../common/images/logo.svg" alt="">
       <span>H5可视化编辑器</span>
     </div>
     <slot></slot>
@@ -61,8 +61,7 @@
     display: inline-block;
     img {
       position: relative;
-      top: 6px;
-      width: 26px;
+      top: 12px;
       height: 28px;
       display: inline-block;
       margin-right: 8px;

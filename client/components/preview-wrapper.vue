@@ -2,8 +2,28 @@
   <div class="components-preview">
     <div class="setting-bg"></div>
     <div class="left-panel">
-      <div class="iframe-wrapper" :style="{width: $config.canvasH5Width + 'px', height: $config.canvasH5Height + 'px'}">
-        <iframe :src="$config.baseURL + '/page/view/' + pageId" frameborder="0" style="background-color:transparent;width: 100%; height: 100%;"></iframe>
+      <!-- <div class="iframe-wrapper" :style="{width: $config.canvasH5Width + 'px', height: $config.canvasH5Height + 'px'}">
+       
+      </div> -->
+      <div class="marvel-device iphone-x">
+        <div class="notch">
+          <div class="camera"></div>
+          <div class="speaker"></div>
+        </div>
+        <div class="top-bar"></div>
+        <div class="sleep"></div>
+        <div class="bottom-bar"></div>
+        <div class="volume"></div>
+        <div class="overflow">
+          <div class="shadow shadow--tr"></div>
+          <div class="shadow shadow--tl"></div>
+          <div class="shadow shadow--br"></div>
+          <div class="shadow shadow--bl"></div>
+        </div>
+        <div class="inner-shadow"></div>
+        <div class="screen">
+          <iframe :src="$config.baseURL + '/page/view/' + pageId" frameborder="0" style="background-color:transparent;width: 100%; height: 100%; margin-top: 44px;"></iframe>
+        </div>
       </div>
     </div>
     <div class="right-panel">
@@ -59,6 +79,9 @@ export default {
   right: 640px;
   z-index: 1050;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .right-panel {
   position: fixed;

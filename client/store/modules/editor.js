@@ -29,7 +29,6 @@ const actions = {
 	 * @param data
 	 */
   setPrjectData({ commit, state, dispatch }, data) {
-    debugger
     let projectData = data;
     if (!projectData) {
       projectData = editorProjectConfig.getProjectConfig()
