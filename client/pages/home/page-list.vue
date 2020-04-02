@@ -123,7 +123,7 @@
 		data() {
 			return {
 				loading: false,
-				defaultCoverImage: require('@client/common/images/quark--pagecover-image.jpg'),
+				defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
 				pageList: [],
         myCount: 0,
         shareCount: 0,
@@ -138,7 +138,7 @@
           disabled: false
         }, {
 					value: 'longPage',
-					label: '长页H5',
+					label: '长图文H5',
 					disabled: false
 				}, {
 					name: 'relativePage',
@@ -186,6 +186,7 @@
 			 */
 			getPageList() {
 				this.$axios.get('/page/myPages', this.searchParams).then(res => {
+          debugger
 					this.pageList = res.body || []
 				})
 			},
@@ -379,7 +380,7 @@
   .page-item {
     width: 224px;
     height: 296px;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     float: left;
     margin-bottom: 24px;

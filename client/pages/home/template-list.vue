@@ -3,7 +3,7 @@
     <div class="page-search-wrapper">
       <el-tabs v-model="searchParams.pageMode" @tab-click="handlePageModeClick">
         <el-tab-pane name="h5"><div slot="label"><span class="nav-tabs-label">H5</span></div></el-tab-pane>
-        <el-tab-pane name="longPage"><div slot="label"><span class="nav-tabs-label">长页H5</span></div></el-tab-pane>
+        <el-tab-pane name="longPage"><div slot="label"><span class="nav-tabs-label">长图文H5</span></div></el-tab-pane>
         <el-tab-pane name="relative"><div slot="label"><span class="nav-tabs-label">排版图文</span></div></el-tab-pane>
         <el-tab-pane name="pc"><div slot="label"><span class="nav-tabs-label">PC页面</span></div></el-tab-pane>
       </el-tabs>
@@ -46,7 +46,7 @@
 		data() {
 			return {
 				loading: false,
-				defaultCoverImage: require('@client/common/images/quark--pagecover-image.jpg'),
+				defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
 				pageList: [],
 				previewId: '',
 				showPreview: false,
@@ -157,7 +157,7 @@
   .page-item {
     width: 224px;
     height: 296px;
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
     float: left;
     margin-bottom: 24px;

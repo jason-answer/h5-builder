@@ -23,7 +23,11 @@
         <div class="inner-shadow"></div>
         <div class="screen">
           <iframe :src="$config.baseURL + '/page/view/' + pageId" frameborder="0" style="background-color:transparent;width: 100%; height: 100%; margin-top: 44px;"></iframe>
+          <div class="x-bottom-bar">
+            <div class="strip"></div>
+          </div>
         </div>
+
       </div>
     </div>
     <div class="right-panel">
@@ -82,6 +86,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .x-bottom-bar {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .strip {
+      width: 160px;
+      background-color: #4a4949;
+      border-radius: 8px;
+      height: 8px;
+    }
+  }
 }
 .right-panel {
   position: fixed;

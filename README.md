@@ -119,7 +119,7 @@ Github: [传送门](https://github.com/huangwei9527/quark-h5)<br/>
 	height: 644, // 宽
 	pages: [], // 多页页面
 	shareConfig: {}, // 微信分享配置
-	pageMode: 0, // 渲染模式，用于扩展多种模式渲染，翻页h5/长页/PC页面等等
+	pageMode: 0, // 渲染模式，用于扩展多种模式渲染，翻页h5/长图文/PC页面等等
 }
 ```
 **多页页面pages其中一页数据结构：**
