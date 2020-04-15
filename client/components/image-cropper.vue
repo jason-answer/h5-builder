@@ -37,8 +37,8 @@ export default {
       defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
       option: {
         img: '',
-        outputSize: 1, //剪切后的图片质量（0.1-1）
-        full: false, //输出原图比例截图 props名full
+        outputSize: 1, // 剪切后的图片质量（0.1-1）
+        full: false, // 输出原图比例截图 props名full
         autoCrop: true,
         outputType: 'png',
         // 只有自动截图开启 宽度高度才生效
@@ -54,8 +54,8 @@ export default {
     updateImage() {
       this.loading = true;
       this.$refs.cropper.getCropBlob(data => {
-        let file = blobToFile(data);
-        let params = new FormData();
+        const file = blobToFile(data);
+        const params = new FormData();
         params.append('file', file);
         this.$axios
           .post('/common/uploadFile', params)
@@ -80,7 +80,7 @@ export default {
         return;
       }
       var reader = new FileReader();
-      let _this = this;
+      const _this = this;
       reader.onload = e => {
         let data;
         if (typeof e.target.result === 'object') {

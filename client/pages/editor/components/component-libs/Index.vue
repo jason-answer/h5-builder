@@ -49,7 +49,7 @@ export default {
      * @param item
      */
     handleClick(item) {
-      let props = this.getComponentProps(item.elName);
+      const props = this.getComponentProps(item.elName);
       this.$store.dispatch('addElement', { ...item, needProps: props });
     },
     /**
@@ -58,7 +58,7 @@ export default {
      */
     getComponentProps(elName) {
       let elComponentData;
-      for (let key in _qk_register_components_object) {
+      for (const key in _qk_register_components_object) {
         if (key.toLowerCase() === camelCase(elName).toLowerCase()) {
           elComponentData = _qk_register_components_object[key];
           break;
@@ -66,8 +66,8 @@ export default {
       }
       if (!elComponentData) return {};
 
-      let props = {};
-      for (let key in elComponentData.props) {
+      const props = {};
+      for (const key in elComponentData.props) {
         props[key] = [Object, Array].includes(elComponentData.props[key].type)
           ? elComponentData.props[key].default()
           : elComponentData.props[key].default;

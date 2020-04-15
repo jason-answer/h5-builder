@@ -37,7 +37,7 @@ export default {
         return [];
       }
       let keyList = Object.keys(this.activeElement.propsValue);
-      let editPropsComponentNameList = Object.keys(attrComponents);
+      const editPropsComponentNameList = Object.keys(attrComponents);
       // 过滤掉找不到对应attr props编辑组件的key
       keyList = keyList.filter(v => {
         return editPropsComponentNameList.includes('attr-qk-' + v);

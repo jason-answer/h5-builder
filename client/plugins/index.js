@@ -49,7 +49,7 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-let _qk_register_components_object = {};
+const _qk_register_components_object = {};
 components.forEach(item => {
   _qk_register_components_object[item.name] = item;
 });

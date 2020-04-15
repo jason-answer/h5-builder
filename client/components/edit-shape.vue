@@ -46,7 +46,7 @@ export default {
       }
       // 正在执行的动画不允许插入新动画
       if (this.animatePlaying) return;
-      let cssText = this.$el.style.cssText;
+      const cssText = this.$el.style.cssText;
       this.animatePlaying = true;
       runAnimations(this.$el, animations, true, () => {
         this.$el.style.cssText = cssText;
@@ -64,10 +64,10 @@ export default {
       const pos = this.defaultStyle;
       const height = pos.height;
       const width = pos.width;
-      let hasT = /t/.test(point);
-      let hasB = /b/.test(point);
-      let hasL = /l/.test(point);
-      let hasR = /r/.test(point);
+      const hasT = /t/.test(point);
+      const hasB = /b/.test(point);
+      const hasL = /l/.test(point);
+      const hasR = /r/.test(point);
       let newLeft = 0;
       let newTop = 0;
       if (point.length === 2) {
@@ -114,25 +114,25 @@ export default {
       // 抛出事件让父组件设置当前元素选中状态
       this.$emit('handleElementClick');
       const pos = { ...this.defaultStyle };
-      let startY = e.clientY;
-      let startX = e.clientX;
-      let startTop = pos.top;
-      let startLeft = pos.left;
+      const startY = e.clientY;
+      const startX = e.clientX;
+      const startTop = pos.top;
+      const startLeft = pos.left;
       let firstTime = '';
       let lastTime = '';
       firstTime = new Date().getTime();
-      let move = moveEvent => {
+      const move = moveEvent => {
         // !#zh 移动的时候，不需要向后代元素传递事件，只需要单纯的移动就OK
         moveEvent.stopPropagation();
         moveEvent.preventDefault();
 
-        let currX = moveEvent.clientX;
-        let currY = moveEvent.clientY;
+        const currX = moveEvent.clientX;
+        const currY = moveEvent.clientY;
         pos.top = currY - startY + startTop;
         pos.left = currX - startX + startLeft;
         this.$emit('resize', pos);
       };
-      let up = () => {
+      const up = () => {
         lastTime = new Date().getTime();
         if (lastTime - firstTime > 200) {
           this.$emit('resize');
@@ -150,36 +150,36 @@ export default {
      * @param downEvent
      */
     handleMouseDownOnPoint(point) {
-      let downEvent = event;
+      const downEvent = event;
       // 抛出事件让父组件设置当前元素选中状态
       this.$emit('handleElementClick');
       downEvent.stopPropagation();
       downEvent.preventDefault(); // Let's stop this event.
       const pos = { ...this.defaultStyle };
-      let height = pos.height;
-      let width = pos.width;
-      let top = pos.top;
-      let left = pos.left;
-      let startX = downEvent.clientX;
-      let startY = downEvent.clientY;
-      let move = moveEvent => {
-        let currX = moveEvent.clientX;
-        let currY = moveEvent.clientY;
-        let disY = currY - startY;
-        let disX = currX - startX;
-        let hasT = /t/.test(point);
-        let hasB = /b/.test(point);
-        let hasL = /l/.test(point);
-        let hasR = /r/.test(point);
-        let newHeight = +height + (hasT ? -disY : hasB ? disY : 0);
-        let newWidth = +width + (hasL ? -disX : hasR ? disX : 0);
+      const height = pos.height;
+      const width = pos.width;
+      const top = pos.top;
+      const left = pos.left;
+      const startX = downEvent.clientX;
+      const startY = downEvent.clientY;
+      const move = moveEvent => {
+        const currX = moveEvent.clientX;
+        const currY = moveEvent.clientY;
+        const disY = currY - startY;
+        const disX = currX - startX;
+        const hasT = /t/.test(point);
+        const hasB = /b/.test(point);
+        const hasL = /l/.test(point);
+        const hasR = /r/.test(point);
+        const newHeight = +height + (hasT ? -disY : hasB ? disY : 0);
+        const newWidth = +width + (hasL ? -disX : hasR ? disX : 0);
         pos.height = newHeight > 0 ? newHeight : 0;
         pos.width = newWidth > 0 ? newWidth : 0;
         pos.left = +left + (hasL ? disX : 0);
         pos.top = +top + (hasT ? disY : 0);
         this.$emit('resize', pos);
       };
-      let up = () => {
+      const up = () => {
         this.$emit('resize');
         document.removeEventListener('mousemove', move);
         document.removeEventListener('mouseup', up);

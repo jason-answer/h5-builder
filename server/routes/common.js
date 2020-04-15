@@ -13,12 +13,12 @@ const uploadImage = require('../utils/uploadImg');
  */
 router.post('/psdPpload', async ctx => {
   const file = ctx.request.files.file; // 获取上传文件
-  let psd = await PSD.open(file.path);
-  var timeStr = + new Date();
-  let descendantsList = psd.tree().descendants();
+  const psd = await PSD.open(file.path);
+  var timeStr = +new Date();
+  const descendantsList = psd.tree().descendants();
   descendantsList.reverse();
-  let psdSourceList = [];
-  let currentPathDir = `public/upload_static/psd_image/${timeStr}`;
+  const psdSourceList = [];
+  const currentPathDir = `public/upload_static/psd_image/${timeStr}`;
   fs.existsSync(path.join(ctx.state.SERVER_PATH, currentPathDir)) || fs.mkdirSync(path.join(ctx.state.SERVER_PATH, currentPathDir));
   for (var i = 0; i < descendantsList.length; i++) {
     if (descendantsList[i].isGroup()) continue;
@@ -53,8 +53,8 @@ router.get('/html2canvas/corsproxy', async ctx => {
  * 上传文件
  */
 router.post('/uploadFile', async ctx => {
-  //imageUrl
-  let imageUrl = uploadImage(ctx);
+  // imageUrl
+  const imageUrl = uploadImage(ctx);
   ctx.body = imageUrl;
 });
 

@@ -33,11 +33,11 @@ export default {
         // 获取提交接口
         // let apiUrl = eventData.url;
         // 获取页面表单数据
-        let formdata = {};
+        const formdata = {};
         page.pages.forEach(data => {
           data.elements.forEach(item => {
             if (!item.isForm) return;
-            let key = item.propsValue.keyName || '';
+            const key = item.propsValue.keyName || '';
             formdata[key] = item.value;
           });
         });

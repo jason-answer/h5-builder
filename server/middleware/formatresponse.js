@@ -1,4 +1,4 @@
-module.exports = async (ctx, next) => {
+module.exports = async(ctx, next) => {
   await next().then(() => {
     if (ctx.status === 200) {
       ctx.body = {

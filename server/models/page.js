@@ -14,7 +14,7 @@ const schema = new Schema({
     title: { type: String, default: '这是#分享者#的大力推荐' },
     description: { type: String, default: '这是#分享者#大力推荐的H5' }
   },
-  pages: Schema.Types.Mixed, //用于原始数据存储
+  pages: Schema.Types.Mixed, // 用于原始数据存储
   script: { type: String, default: '' }, // 第三方脚本插件
   author: {
     type: mongoose.Schema.Types.ObjectId,
@@ -31,7 +31,7 @@ const schema = new Schema({
   isPublish: { type: Boolean, default: false }, //  发布状态
   isTemplate: { type: Boolean, default: false },
   members: [mongoose.Schema.Types.ObjectId] // 共享人员列表
-}, { timestamps: { createdAt: 'created', updatedAt: 'updated' } });
+}, { timestamps: { createdAt: 'created', updatedAt: 'updated' }});
 
 // Model
 const model = mongoose.model('page', schema, 'page');

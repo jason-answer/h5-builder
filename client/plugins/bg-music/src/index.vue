@@ -33,8 +33,8 @@ export default {
     const audio = this.$refs.audioPlayer;
     audio.play().catch(() => {
       this.playError = true;
-      let event = ['click', 'WeixinJSBridgeReady']; // "touchstart"
-      let pageClick = () => {
+      const event = ['click', 'WeixinJSBridgeReady']; // "touchstart"
+      const pageClick = () => {
         if (this.playError) {
           this.playError = false;
           audio.load();

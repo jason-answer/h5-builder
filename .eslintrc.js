@@ -173,28 +173,28 @@ module.exports = {
       'before': false,
       'after': true
     }],
-    // 'space-before-blocks': [2, 'always'],
-    // 'space-before-function-paren': [2, 'never'],
-    // 'space-in-parens': [2, 'never'],
-    // 'space-infix-ops': 2,
-    // 'space-unary-ops': [2, {
-    //   'words': true,
-    //   'nonwords': false
-    // }],
-    // 'spaced-comment': [2, 'always', {
-    //   'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
-    // }],
-    // 'template-curly-spacing': [2, 'never'],
-    // 'use-isnan': 2,
-    // 'valid-typeof': 2,
-    // 'wrap-iife': [2, 'any'],
-    // 'yield-star-spacing': [2, 'both'],
-    // 'yoda': [2, 'never'],
-    // 'prefer-const': 2,
-    // 'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    // 'object-curly-spacing': [2, 'always', {
-    //   objectsInObjects: false
-    // }],
-    // 'array-bracket-spacing': [2, 'never']
+    'space-before-blocks': [2, 'always'],
+    'space-before-function-paren': [2, 'never'],
+    'space-in-parens': [2, 'never'],
+    'space-infix-ops': 2,
+    'space-unary-ops': [2, {
+      'words': true,
+      'nonwords': false
+    }],
+    'spaced-comment': [2, 'always', {
+      'markers': ['global', 'globals', 'eslint', 'eslint-disable', '*package', '!', ',']
+    }],
+    'template-curly-spacing': [2, 'never'],
+    'use-isnan': 2,
+    'valid-typeof': 2,
+    'wrap-iife': [2, 'any'],
+    'yield-star-spacing': [2, 'both'],
+    'yoda': [2, 'never'],
+    'prefer-const': 2,
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'object-curly-spacing': [2, 'always', {
+      objectsInObjects: false
+    }],
+    'array-bracket-spacing': [2, 'never']
   }
 }

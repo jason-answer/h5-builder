@@ -9,11 +9,11 @@ const router = require('koa-router')();
  * 页面访问地址
  */
 router.get('/view/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let page = await Page.findOne({ _id });
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const page = await Page.findOne({ _id });
   ctx.status = 201;
   // todo 根据不同type渲染不同得模板引擎
-  let pageMode = {
+  const pageMode = {
     'h5': 'h5-swiper',
     'longPage': 'h5-long',
     'relativePage': 'h5-relative',
@@ -30,7 +30,7 @@ router.get('/myPages', async ctx => {
   let author = ctx.state.user._id;
   author = mongoose.mongo.ObjectId(author);
   if (ctx.query.type === 'share') {
-    ctx.body = await Page.find({ pageMode: ctx.query.pageMode, isTemplate: { $ne: true }, members: { $elemMatch: { $in: author } } });
+    ctx.body = await Page.find({ pageMode: ctx.query.pageMode, isTemplate: { $ne: true }, members: { $elemMatch: { $in: author }}});
     return;
   }
   ctx.body = await Page.find({ author: author, pageMode: ctx.query.pageMode }).ne('isTemplate', true);
@@ -39,8 +39,8 @@ router.get('/myPages', async ctx => {
 router.get('/myPages/count', async ctx => {
   let author = ctx.state.user._id;
   author = mongoose.mongo.ObjectId(author);
-  let myList = await Page.find({ pageMode: ctx.query.pageMode, author: author }).ne('isTemplate', true);
-  let shareList = await Page.find({ pageMode: ctx.query.pageMode, isTemplate: { $ne: true }, members: { $elemMatch: { $in: author } } });
+  const myList = await Page.find({ pageMode: ctx.query.pageMode, author: author }).ne('isTemplate', true);
+  const shareList = await Page.find({ pageMode: ctx.query.pageMode, isTemplate: { $ne: true }, members: { $elemMatch: { $in: author }}});
   ctx.body = {
     my: myList.length,
     share: shareList.length
@@ -51,7 +51,7 @@ router.get('/myPages/count', async ctx => {
  * 查找某一页页面数据
  */
 router.get('/detail/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
   ctx.body = await Page.findOne({ _id });
 });
 
@@ -59,8 +59,8 @@ router.get('/detail/:_id', async ctx => {
  * 新增页面
  */
 router.post('/add', async ctx => {
-  let data = ctx.request.body;
-  let author = ctx.state.user._id;
+  const data = ctx.request.body;
+  const author = ctx.state.user._id;
   ctx.body = await Page.create({
     ...data,
     author: author,
@@ -72,9 +72,9 @@ router.post('/add', async ctx => {
  * 复制页面
  */
 router.post('/copy/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let author = ctx.state.user._id;
-  let data = await Page.findOne({ _id });
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const author = ctx.state.user._id;
+  const data = await Page.findOne({ _id });
   ctx.body = await Page.create({
     ...data.toObject(),
     isPublish: false,
@@ -89,8 +89,8 @@ router.post('/copy/:_id', async ctx => {
  * 修改页面
  */
 router.post('/update/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let data = ctx.request.body;
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const data = ctx.request.body;
   ctx.body = await Page.updateOne({ _id }, { $set: data }, {
     runValidators: true
   });
@@ -100,7 +100,7 @@ router.post('/update/:_id', async ctx => {
  * 删除页面
  */
 router.delete('/delete/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
   ctx.body = await Page.deleteOne({ _id });
 });
 
@@ -108,8 +108,8 @@ router.delete('/delete/:_id', async ctx => {
  * 设为模板
  */
 router.post('/setTemplate/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let data = await Page.findOne({ _id });
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const data = await Page.findOne({ _id });
   ctx.body = await Page.create({
     ...data.toObject(),
     isTemplate: true,
@@ -132,8 +132,8 @@ router.get('/myTemplate', async ctx => {
  * 发布页面
  */
 router.post('/publish/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  ctx.body = await Page.updateOne({ _id }, { $set: { isPublish: true } }, {
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  ctx.body = await Page.updateOne({ _id }, { $set: { isPublish: true }}, {
     runValidators: true
   });
 
@@ -144,9 +144,9 @@ router.post('/publish/:_id', async ctx => {
  * 添加协同开发人员
  */
 router.post('/shareToUser/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let data = ctx.request.body;
-  ctx.body = await Page.updateOne({ _id }, { $push: { members: data.userIds } }, {
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const data = ctx.request.body;
+  ctx.body = await Page.updateOne({ _id }, { $push: { members: data.userIds }}, {
     runValidators: true
   });
 });
@@ -154,9 +154,9 @@ router.post('/shareToUser/:_id', async ctx => {
  * 删除协同开发人员
  */
 router.post('/deleteShareToUser/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let author = ctx.state.user._id;
-  ctx.body = await Page.updateOne({ _id }, { $pull: { members: author } }, {
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const author = ctx.state.user._id;
+  ctx.body = await Page.updateOne({ _id }, { $pull: { members: author }}, {
     runValidators: true
   });
 });
@@ -165,8 +165,8 @@ router.post('/deleteShareToUser/:_id', async ctx => {
  * 发布模板到模板市场
  */
 router.post('/publishTemplate/:_id', async ctx => {
-  let _id = mongoose.mongo.ObjectId(ctx.params._id);
-  let data = await Page.findOne({ _id });
+  const _id = mongoose.mongo.ObjectId(ctx.params._id);
+  const data = await Page.findOne({ _id });
   ctx.body = await Page.create({
     ...data.toObject(),
     isTemplate: true,

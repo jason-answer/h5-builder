@@ -2,7 +2,7 @@ import { createUUID, deepClone } from '../../../common/uitls';
 import { cloneDeep, merge } from 'lodash';
 import $config from '@client/config';
 // 元素配置信息字段
-let elementConfig = {
+const elementConfig = {
   elName: '', // 组件名
   animations: [], // 动画
   commonStyle: {
@@ -43,7 +43,7 @@ let elementConfig = {
   valueType: 'String' // 值类型
 };
 // 页面配置信息字段
-let pageConfig = {
+const pageConfig = {
   name: '',
   elements: [],
   commonStyle: {
@@ -54,7 +54,7 @@ let pageConfig = {
   config: {}
 };
 // 项目配置信息字段
-let projectConfig = {
+const projectConfig = {
   name: '',
   title: '未命名场景',
   description: '我用夸克可视化编辑器做了一个超酷炫的H5，快来看看吧。',
@@ -66,10 +66,10 @@ let projectConfig = {
   pages: []
 };
 
-let getElementConfig = function(element, extendStyle = {}) {
-  let elementData = cloneDeep(element);
-  let type = elementData.valueType || 'String'; // 默认string类型
-  let dict = {
+const getElementConfig = function(element, extendStyle = {}) {
+  const elementData = cloneDeep(element);
+  const type = elementData.valueType || 'String'; // 默认string类型
+  const dict = {
     'Sting': '',
     'Array': [],
     'Object': {},
@@ -77,8 +77,8 @@ let getElementConfig = function(element, extendStyle = {}) {
     'Number': 0
     // 待扩展数据类型
   };
-  let elementConfigData = cloneDeep(elementConfig);
-  let config = {
+  const elementConfigData = cloneDeep(elementConfig);
+  const config = {
     uuid: createUUID(),
     ...elementConfigData,
     elName: elementData.elName,
@@ -93,7 +93,7 @@ let getElementConfig = function(element, extendStyle = {}) {
   config.isForm = !!element.isForm;
   return config;
 };
-let copyElement = function(element, extendStyle = {}) {
+const copyElement = function(element, extendStyle = {}) {
   element = cloneDeep(element);
   element.uuid = createUUID();
   element.commonStyle = merge(element.commonStyle, extendStyle);
@@ -103,14 +103,14 @@ let copyElement = function(element, extendStyle = {}) {
   return element;
 };
 
-let getPageConfig = function() {
+const getPageConfig = function() {
   return {
     uuid: createUUID(),
     ...cloneDeep(pageConfig)
   };
 };
-let copyPage = function(data) {
-  let pageData = cloneDeep(data);
+const copyPage = function(data) {
+  const pageData = cloneDeep(data);
   pageData.uuid = createUUID();
   pageData.elements = pageData.elements.map(element => {
     return copyElement(element);
@@ -118,9 +118,9 @@ let copyPage = function(data) {
   return pageData;
 };
 
-let getProjectConfig = function() {
-  let project = cloneDeep(projectConfig);
-  let onePage = getPageConfig();
+const getProjectConfig = function() {
+  const project = cloneDeep(projectConfig);
+  const onePage = getPageConfig();
   project.pages.push({
     ...onePage
   });
@@ -132,11 +132,11 @@ let getProjectConfig = function() {
  * @param styleObj
  * @param scalePoint 缩放比例
  */
-let getCommonStyle = function(styleObj, scalingRatio = 1) {
-  let needUnitStr = ['width', 'height', 'top', 'left', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'borderWidth', 'fontSize', 'borderRadius', 'letterSpacing'];
-  let style = {};
+const getCommonStyle = function(styleObj, scalingRatio = 1) {
+  const needUnitStr = ['width', 'height', 'top', 'left', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'borderWidth', 'fontSize', 'borderRadius', 'letterSpacing'];
+  const style = {};
 
-  for (let key in styleObj) {
+  for (const key in styleObj) {
     if (needUnitStr.includes(key)) {
       style[key] = (styleObj[key] * scalingRatio) + 'px';
     } else {

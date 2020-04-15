@@ -13,7 +13,7 @@ const usersSchema = new Schema({
   email: { type: String, default: '' },
   avatar: { type: String, default: '' },
   roles: { type: String, default: '' },
-  type: { type: String, enum: ['site', 'third'], default: 'site' } //site用户是网站注册用户, third是第三方登录过来的用户
+  type: { type: String, enum: ['site', 'third'], default: 'site' } // site用户是网站注册用户, third是第三方登录过来的用户
 });
 
 // Model

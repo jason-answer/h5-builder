@@ -23,8 +23,8 @@ export default {
     }
   },
   mounted() {
-    let cssText = this.$el.style.cssText;
-    let animations = this.element.animations || [];
+    const cssText = this.$el.style.cssText;
+    const animations = this.element.animations || [];
     runAnimations(this.$el, animations, false, () => {
       this.$el.style.cssText = cssText;
     });

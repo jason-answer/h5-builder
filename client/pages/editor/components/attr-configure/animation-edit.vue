@@ -148,7 +148,7 @@ export default {
      * 执行此条动画效果
      */
     runAnimate(index) {
-      let animationData =
+      const animationData =
         index === undefined
           ? this.activeElement.animations
           : [this.activeElement.animations[index]];

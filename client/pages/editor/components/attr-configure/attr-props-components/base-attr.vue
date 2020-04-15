@@ -401,10 +401,10 @@ export default {
      * @param type
      */
     changeAlignType(type) {
-      let canvasW = this.$config.canvasH5Width;
-      let canvasH = this.$config.canvasH5Height;
-      let eleW = this.activeElement.commonStyle.width;
-      let eleH = this.activeElement.commonStyle.height;
+      const canvasW = this.$config.canvasH5Width;
+      const canvasH = this.$config.canvasH5Height;
+      const eleW = this.activeElement.commonStyle.width;
+      const eleH = this.activeElement.commonStyle.height;
 
       switch (type) {
         case 't':
@@ -437,7 +437,7 @@ export default {
      * 初始化阴影编辑对象
      */
     initBoxShadowEdit() {
-      let boxShadow = this.activeElement.commonStyle.boxShadow;
+      const boxShadow = this.activeElement.commonStyle.boxShadow;
       let boxShadowEditConfig = {
         h: 0,
         v: 0,
@@ -449,7 +449,7 @@ export default {
         this.boxShadow = boxShadowEditConfig;
         return;
       }
-      let str = boxShadow.split(' ');
+      const str = boxShadow.split(' ');
 
       boxShadowEditConfig = {
         h: parseInt(str[0].replace('px', '')),
@@ -461,7 +461,7 @@ export default {
       this.boxShadow = boxShadowEditConfig;
     },
     boxShadowChange() {
-      let str = `${this.boxShadow.h}px ${this.boxShadow.v}px  ${this.boxShadow.blur}px  ${this.boxShadow.spread}px  ${this.boxShadow.color}`;
+      const str = `${this.boxShadow.h}px ${this.boxShadow.v}px  ${this.boxShadow.blur}px  ${this.boxShadow.spread}px  ${this.boxShadow.color}`;
       this.activeElement.commonStyle.boxShadow = str;
     },
     /**

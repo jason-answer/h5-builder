@@ -1,6 +1,6 @@
-const CryptoJS = require('crypto-js'); //引用AES源码js
+const CryptoJS = require('crypto-js'); // 引用AES源码js
 
-const keyStr = 'icklsdufidsakdfa'; //十六位十六进制数作为密钥
+const keyStr = 'icklsdufidsakdfa'; // 十六位十六进制数作为密钥
 const ivStr = ''; // 偏移量
 
 function Encrypt(data) {
@@ -11,7 +11,7 @@ function Encrypt(data) {
     mode: CryptoJS.mode.ECB,
     padding: CryptoJS.pad.Pkcs7
   });
-  //返回的是base64格式的密文
+  // 返回的是base64格式的密文
   return encrypted.ciphertext.toString();
 }
 

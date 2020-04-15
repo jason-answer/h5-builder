@@ -6,7 +6,7 @@
  * @returns {Promise<void>}
  */
 export default async function runAnimation($el, animationList = [], isDebug, callback) {
-  let playFn = function(animation) {
+  const playFn = function(animation) {
     return new Promise(resolve => {
       $el.style.animationName = animation.type;
       $el.style.animationDuration = `${animation.duration}s`;
@@ -14,7 +14,7 @@ export default async function runAnimation($el, animationList = [], isDebug, cal
       $el.style.animationIterationCount = animation.infinite ? (isDebug ? 1 : 'infinite') : animation.interationCount;
       $el.style.animationDelay = `${animation.delay}s`;
       $el.style.animationFillMode = 'both';
-      let resolveFn = function() {
+      const resolveFn = function() {
         $el.removeEventListener('animationend', resolveFn, false);
         $el.addEventListener('animationcancel', resolveFn, false);
         resolve();

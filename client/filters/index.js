@@ -16,7 +16,7 @@ const filter = {
 	 * @param list 对象列表
 	 */
   getLabelText(value, list, label = 'label') {
-    let data = list.find(v => v.value === value);
+    const data = list.find(v => v.value === value);
     if (data) {
       return data[label];
     } else {

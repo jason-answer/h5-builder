@@ -15,13 +15,13 @@ const $config = require('../config');
 const app = new Koa();
 const SECRET = 'quark'; // 加密参数
 
-//配置静态web
+// 配置静态web
 app.use(koaStatic(__dirname + '/public'), {
   gzip: true, setHeaders: function(res) {
     res.header('Access-Control-Allow-Origin', '*');
   }
 });
-//跨域处理
+// 跨域处理
 app.use(cors());
 /**
  * post接口数据处理
@@ -33,7 +33,7 @@ app.use(koaBody({
   }
 }));
 
-//配置ejs-template 模板引擎
+// 配置ejs-template 模板引擎
 render(app, {
   root: path.join(__dirname, 'views'),
   layout: false,
@@ -58,9 +58,9 @@ app.use(koajwt({ secret: SECRET }).unless({
 /**
  * 配置全局的变量
  */
-router.use(async (ctx, next) => {
+router.use(async(ctx, next) => {
   // token解密 将token里的用户信息赋值到全局变量中
-  let token = ctx.headers.authorization;
+  const token = ctx.headers.authorization;
   if (token) {
     ctx.state.user = jsonwebtoken.verify(token.split(' ')[1], SECRET);
   }
@@ -75,16 +75,16 @@ router.use(async (ctx, next) => {
 // 链接数据库
 mongoConf.connect();
 
-//配置路由
+// 配置路由
 fs.readdirSync(path.join(__dirname, './routes')).forEach(route => {
-  let api = require(`./routes/${route}`);
+  const api = require(`./routes/${route}`);
   router.use(`/${route.replace('.js', '')}`, api.routes());
 });
 
 app.use(formatresponse);
 
-app.use(router.routes()); /*启动路由*/
+app.use(router.routes()); /* 启动路由*/
 app.use(router.allowedMethods());
 
-//启动服务
+// 启动服务
 app.listen($config.port);

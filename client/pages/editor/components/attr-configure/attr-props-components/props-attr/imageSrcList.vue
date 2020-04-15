@@ -49,14 +49,14 @@ export default {
   },
   methods: {
     initData() {
-      let list = [];
+      const list = [];
       this.imageSrcList.forEach(item => {
         list.push({ url: item });
       });
       this.tempValue = list;
     },
     getResultImageSrcList() {
-      let list = [];
+      const list = [];
       for (let i = 0, len = this.tempValue.length; i < len; i++) {
         list.push(this.tempValue[i].url);
       }
@@ -66,7 +66,7 @@ export default {
       this.$emit('update:imageSrcList', this.getResultImageSrcList());
     },
     add(index) {
-      let img = this.tempValue[index];
+      const img = this.tempValue[index];
       this.tempValue.splice(index, 0, { ...img });
     },
     del(index) {

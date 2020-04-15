@@ -211,7 +211,7 @@ export default {
           const file = new window.File([blob], +new Date() + '.png', {
             type: 'image/png'
           });
-          let params = new FormData();
+          const params = new FormData();
           params.append('file', file);
           this.$axios
             .post('/common/uploadFile', params)
@@ -231,11 +231,11 @@ export default {
      * @param dataList
      */
     importPsdData(psdData) {
-      let elementsList = psdData.elements;
-      let psdWidth = psdData.document.width;
-      let scalingRatio = this.projectData.width / psdWidth;
+      const elementsList = psdData.elements;
+      const psdWidth = psdData.document.width;
+      const scalingRatio = this.projectData.width / psdWidth;
       elementsList.forEach(item => {
-        let { width, height, top, left, imageSrc, opacity, zIndex } = item;
+        const { width, height, top, left, imageSrc, opacity, zIndex } = item;
         setTimeout(() => {
           this.$store.dispatch('addElement', {
             elName: 'qk-image',

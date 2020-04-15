@@ -14,8 +14,8 @@ export default {
         this.$message.error('psd文件不能超过20M！');
         return;
       }
-      let temp1 = file.name.split('.');
-      let temp = temp1[temp1.length - 1];
+      const temp1 = file.name.split('.');
+      const temp = temp1[temp1.length - 1];
       if (!['psd'].includes(temp)) {
         this.$message.error('请上传psd文件');
         return false;
@@ -24,7 +24,7 @@ export default {
       return false;
     },
     uploadPsd(file) {
-      let params = new FormData();
+      const params = new FormData();
       params.append('file', file);
       this.$axios.post('/common/psdPpload', params).then(res => {
         this.$emit('upload-success', res.body || []);

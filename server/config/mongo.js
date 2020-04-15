@@ -16,7 +16,7 @@ const url = 'mongodb://admin:admin@localhost:27017/h5_templateDB';
 module.exports = {
   connect: () => {
     mongoose.connect(url, options);
-    let db = mongoose.connection;
+    const db = mongoose.connection;
     // eslint-disable-next-line no-console
     db.on('error', console.error.bind(console, '连接错误:'));
     db.once('open', () => {

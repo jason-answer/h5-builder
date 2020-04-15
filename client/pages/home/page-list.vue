@@ -203,7 +203,7 @@ export default {
      * 创建页面,初始化数据提交接口,然后把id拿到后跳转到编辑器页面
      */
     createNewPage() {
-      let newPageData = editorProjectConfig.getProjectConfig();
+      const newPageData = editorProjectConfig.getProjectConfig();
       this.loading = true;
       this.$axios
         .post('/page/add', {
@@ -214,7 +214,7 @@ export default {
         .then(res => {
           this.loading = false;
           if (res.body) {
-            this.$router.push({ path: 'editor', query: { id: res.body._id } });
+            this.$router.push({ path: 'editor', query: { id: res.body._id }});
           }
         })
         .catch(() => {
@@ -226,7 +226,7 @@ export default {
      * @param id
      */
     editPage(id) {
-      this.$router.push({ path: 'editor', query: { id: id } });
+      this.$router.push({ path: 'editor', query: { id: id }});
     },
     /**
      * 复制页面
@@ -238,7 +238,7 @@ export default {
         .then(res => {
           this.loading = false;
           if (res.body) {
-            this.$router.push({ path: 'editor', query: { id: res.body._id } });
+            this.$router.push({ path: 'editor', query: { id: res.body._id }});
           }
         })
         .catch(() => {
@@ -345,7 +345,7 @@ export default {
      * 跳转到数据统计页面
      */
     showPageData(id) {
-      this.$router.push({ name: 'pageDataDetail', query: { id: id } });
+      this.$router.push({ name: 'pageDataDetail', query: { id: id }});
     },
     /**
      * 设为模板

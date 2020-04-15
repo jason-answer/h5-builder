@@ -72,7 +72,7 @@ const actions = {
 	 * @param commit
 	 */
   addPage({ commit }, uuid) {
-    let data = editorProjectConfig.getPageConfig();
+    const data = editorProjectConfig.getPageConfig();
     let index = -1;
     if (uuid) {
       index = state.projectData.pages.findIndex(v => { return v.uuid === uuid; });
@@ -101,7 +101,7 @@ const actions = {
     if (state.projectData.pages[0] === uuid && state.activePageUUID === uuid) {
       commit('setActivePageUUID', state.projectData.pages[1].uuid);
     }
-    let index = state.projectData.pages.findIndex(v => { return v.uuid === uuid; });
+    const index = state.projectData.pages.findIndex(v => { return v.uuid === uuid; });
     commit('deletePage', index);
     commit('addHistoryCache');
   },
@@ -111,8 +111,8 @@ const actions = {
 	 * @param uuid
 	 */
   copyPage({ commit }, uuid) {
-    let pageData = state.projectData.pages.find(v => { return v.uuid === uuid; });
-    let data = editorProjectConfig.copyPage(pageData);
+    const pageData = state.projectData.pages.find(v => { return v.uuid === uuid; });
+    const data = editorProjectConfig.copyPage(pageData);
     commit('insertPage', data);
     commit('addHistoryCache');
   },
@@ -125,8 +125,8 @@ const actions = {
 	 * @param data
 	 */
   addElement({ commit }, elData) {
-    let activePage = getters.activePage(state);
-    let pageMode = getters.pageMode(state);
+    const activePage = getters.activePage(state);
+    const pageMode = getters.pageMode(state);
     let data = {};
     if (pageMode === 'h5') {
       data = editorProjectConfig.getElementConfig(elData, { position: 'absolute', zIndex: activePage.elements.length + 1 });
@@ -145,7 +145,7 @@ const actions = {
 	 * @param data
 	 */
   elementCommand({ commit, dispatch, state }, command) {
-    let elData = getters.activeElement(state);
+    const elData = getters.activeElement(state);
     switch (command) {
       case 'copy':
         dispatch('copyElement', elData);
@@ -183,9 +183,9 @@ const actions = {
     }
   },
   copyElement({ state, commit }, elData) {
-    let copyOrignData = elData || getters.activeElement(state);
-    let activePage = getters.activePage(state);
-    let data = editorProjectConfig.copyElement(copyOrignData, { zIndex: activePage.elements.length + 1 });
+    const copyOrignData = elData || getters.activeElement(state);
+    const activePage = getters.activePage(state);
+    const data = editorProjectConfig.copyElement(copyOrignData, { zIndex: activePage.elements.length + 1 });
     commit('addElement', data);
     commit('resetEditorHeight');
     commit('setActiveElementUUID', data.uuid);
@@ -214,7 +214,7 @@ const actions = {
 	 */
   addElementAnimate({ commit }, animationName) {
     // 初始化数据
-    let animateDefaultData = {
+    const animateDefaultData = {
       type: animationName,
       duration: 1,
       infinite: '',
@@ -241,7 +241,7 @@ const actions = {
 	 */
   addElementEvent({ commit }, type) {
     // 初始化数据
-    let eventDefaultData = {
+    const eventDefaultData = {
       type: type,
       url: ''
     };
@@ -337,7 +337,7 @@ const mutations = {
 	 * @param elData
 	 */
   addElement(state, elData) {
-    let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
+    const index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
 
     state.projectData.pages[index].elements.push(elData);
   },
@@ -347,8 +347,8 @@ const mutations = {
 	 * @param elData  activeElementIndex
 	 */
   deleteElement(state, uuid) {
-    let activePage = getters.activePage(state);
-    let elementIndex = activePage.elements.findIndex(v => { return v.uuid === uuid; });
+    const activePage = getters.activePage(state);
+    const elementIndex = activePage.elements.findIndex(v => { return v.uuid === uuid; });
     activePage.elements.splice(elementIndex, 1);
   },
   /**
@@ -358,7 +358,7 @@ const mutations = {
 	 * @param styleObject
 	 */
   resetElementCommonStyle(state, style) {
-    let activeElement = getters.activeElement(state);
+    const activeElement = getters.activeElement(state);
     activeElement.commonStyle = _.merge(activeElement.commonStyle, style);
   },
 
@@ -368,7 +368,7 @@ const mutations = {
 	 * @param data
 	 */
   addElementAnimate(state, data) {
-    let activeElement = getters.activeElement(state);
+    const activeElement = getters.activeElement(state);
     activeElement.animations.push(data);
   },
   /**
@@ -377,7 +377,7 @@ const mutations = {
 	 * @param index
 	 */
   deleteElementAnimate(state, index) {
-    let activeElement = getters.activeElement(state);
+    const activeElement = getters.activeElement(state);
     activeElement.animations.splice(index, 1);
   },
   /**
@@ -386,7 +386,7 @@ const mutations = {
 	 * @param data
 	 */
   addElementEvent(state, data) {
-    let activeElement = getters.activeElement(state);
+    const activeElement = getters.activeElement(state);
     activeElement.events.push(data);
   },
   /**
@@ -395,7 +395,7 @@ const mutations = {
 	 * @param index
 	 */
   deleteElementEvent(state, index) {
-    let activeElement = getters.activeElement(state);
+    const activeElement = getters.activeElement(state);
     activeElement.events.splice(index, 1);
   },
   /**
@@ -406,12 +406,12 @@ const mutations = {
 	 */
   resetElementZIndex(state, { uuid, type }) {
     uuid = uuid || state.activeElementUUID;
-    let activePage = getters.activePage(state);
-    let currentElement = activePage.elements.find(v => { return v.uuid === uuid; });
-    let itemZIndex = currentElement.commonStyle.zIndex;
-    let maxIndex = activePage.elements.length;
-    let mminIndex = 1;
-    let zIndexDirc = {
+    const activePage = getters.activePage(state);
+    const currentElement = activePage.elements.find(v => { return v.uuid === uuid; });
+    const itemZIndex = currentElement.commonStyle.zIndex;
+    const maxIndex = activePage.elements.length;
+    const mminIndex = 1;
+    const zIndexDirc = {
       layerUp: Math.min(itemZIndex + 1, maxIndex),
       layerDown: Math.max(itemZIndex - 1, mminIndex),
       layerTop: maxIndex,
@@ -419,7 +419,7 @@ const mutations = {
       set0: 0
     };
     if (zIndexDirc[type] === undefined) return;
-    let currentZIndex = zIndexDirc[type];
+    const currentZIndex = zIndexDirc[type];
     currentElement.commonStyle.zIndex = currentZIndex;
     activePage.elements.forEach(item => {
       if (uuid === item.uuid) return;
@@ -497,7 +497,7 @@ const mutations = {
    */
   resetEditorHeight(state) {
     let editorHeight = 0;
-    let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
+    const index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
     _(state.projectData.pages[index].elements).forEach(function(value) {
       editorHeight = editorHeight + value.commonStyle.height;
     });
@@ -534,7 +534,7 @@ const getters = {
     if (!state.projectData.pages) {
       return -1;
     }
-    let currentPageIndex = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
+    const currentPageIndex = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
     if (currentPageIndex === -1) {
       return -1;
     }
@@ -546,7 +546,7 @@ const getters = {
   activePage() {
     // 如果不存在页面返回-1
     if (!state.projectData.pages || !state.activePageUUID) {
-      return { commonStyle: {}, config: {} };
+      return { commonStyle: {}, config: {}};
     }
     return state.projectData.pages.find(v => { return v.uuid === state.activePageUUID; });
   },
@@ -556,11 +556,11 @@ const getters = {
   activeElement() {
     // 如果不存在页面返回-1
     if (!state.projectData.pages) {
-      return { commonStyle: {}, propsValue: {} };
+      return { commonStyle: {}, propsValue: {}};
     }
-    let currentPageIndex = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
+    const currentPageIndex = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID; });
     if (currentPageIndex === -1) {
-      return { commonStyle: {}, propsValue: {} };
+      return { commonStyle: {}, propsValue: {}};
     }
     return state.projectData.pages[currentPageIndex].elements.find(v => { return v.uuid === state.activeElementUUID; });
   },

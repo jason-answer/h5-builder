@@ -10,14 +10,14 @@ if (process.env.VUE_APP_ENV_NAME !== 'development') {
 axios.defaults.headers['Content-Type'] = 'application/json;charse=UTF-8';
 axios.defaults.timeout = 30000; // 超时时间
 
-//请求拦截器
+// 请求拦截器
 axios.interceptors.request.use(config => {
   config.headers.Authorization = store.getters.authorization;
   return config;
 }, error => {
   return Promise.reject(error);
 });
-//响应拦截器即异常处理
+// 响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   if (response.data.status) {
     return Promise.resolve(response.data);
@@ -80,11 +80,11 @@ axios.interceptors.response.use(response => {
 /**
  * 下载文件
  */
-let downloadFile = (url) => {
+const downloadFile = (url) => {
   window.open(url);
 };
 export default {
-  //get请求
+  // get请求
   get(url, param, responseType, header) {
     return axios({
       method: 'get',
@@ -96,7 +96,7 @@ export default {
       params: param || {}
     });
   },
-  //post请求
+  // post请求
   post(url, param, header) {
     return axios({
       method: 'post',
@@ -119,7 +119,7 @@ export default {
       data: QS.stringify(params) || {}
     });
   },
-  //post请求
+  // post请求
   put(url, param, header) {
     return axios({
       method: 'put',
@@ -144,12 +144,12 @@ export default {
   },
   // 此方法非promise 导出文件
   getFile(url, params) {
-    let tempParams = {
+    const tempParams = {
       ...(params || {})
     };
     // 拼接下载地址
-    let list = [];
-    for (let key in tempParams) {
+    const list = [];
+    for (const key in tempParams) {
       list.push(key.toString() + '=' + tempParams[key]);
     }
     url = $config.baseURL + url + '?' + list.join('&');

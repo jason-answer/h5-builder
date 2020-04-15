@@ -171,7 +171,7 @@ export default {
         height: 667,
         proxy: '/htmltocanvas/corsproxy' // 设置跨域接口
       }).then(canvas => {
-        let url = canvas.toDataURL('image/jpeg');
+        const url = canvas.toDataURL('image/jpeg');
         this.$store.commit('updateCoverImage', url);
       });
     }

@@ -1,4 +1,4 @@
-let animateCssClassName = [
+const animateCssClassName = [
   {
     label: '进入',
     children: [
