@@ -8,11 +8,7 @@
         背景颜色：
       </p>
       <div class="attr-item-edit-input no-top">
-        <el-color-picker
-          v-model="activePage.commonStyle.backgroundColor"
-          size="mini"
-          :show-alpha="true"
-        />
+        <el-color-picker v-model="activePage.commonStyle.backgroundColor" size="mini" :show-alpha="true" />
       </div>
     </div>
     <div class="attr-item-edit-wrapper">
@@ -33,23 +29,13 @@
           尺寸：
         </p>
         <div class="col-2 attr-item-edit-input">
-          <el-input-number
-            v-model="projectData.width"
-            size="mini"
-            controls-position="right"
-            :min="0"
-          />
+          <el-input-number v-model="projectData.width" size="mini" controls-position="right" :min="0" />
           <div class="attr-item-edit-input-des">
             宽度
           </div>
         </div>
         <div class="col-2 attr-item-edit-input">
-          <el-input-number
-            v-model="projectData.height"
-            size="mini"
-            controls-position="right"
-            :min="0"
-          />
+          <el-input-number v-model="projectData.height" size="mini" controls-position="right" :min="0" />
           <div class="attr-item-edit-input-des">
             高度
           </div>
@@ -60,75 +46,75 @@
 </template>
 
 <script>
-	import {mapState, mapGetters} from 'vuex'
-	import imageSelect from '@client/components/image-select'
-	export default {
-		components: {
-			imageSelect
-		},
-		computed: {
-			...mapState({
-				projectData: state => state.editor.projectData,
-				activePageUUID: state => state.editor.activePageUUID,
-				activeElementUUID: state => state.editor.activeElementUUID
-			}),
-			...mapGetters([
-				'currentPageIndex',
-				'activeElementIndex',
-				'activeElement',
-        'activePage',
-				'pageMode'
-			])
-		},
-	}
+import { mapState, mapGetters } from "vuex";
+import imageSelect from "@client/components/image-select";
+export default {
+  components: {
+    imageSelect
+  },
+  computed: {
+    ...mapState({
+      projectData: state => state.editor.projectData,
+      activePageUUID: state => state.editor.activePageUUID,
+      activeElementUUID: state => state.editor.activeElementUUID
+    }),
+    ...mapGetters([
+      "currentPageIndex",
+      "activeElementIndex",
+      "activeElement",
+      "activePage",
+      "pageMode"
+    ])
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .components-attr-edit {
-    height: 100%;
-  }
+.components-attr-edit {
+  height: 100%;
+}
 
-  .components-attr-animate-edit {
-    position: relative;
-  }
+.components-attr-animate-edit {
+  position: relative;
+}
 
-  .attr-title {
-    font-weight: bold;
+.attr-title {
+  font-weight: bold;
+}
+.attr-item-edit-wrapper {
+  padding-left: 18px;
+  display: flex;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 10px;
+  .attr-item-title {
+    text-align: left;
+    min-width: 60px;
+    font-size: 12px;
   }
-  .attr-item-edit-wrapper {
-    padding-left: 18px;
-    display: flex;
-    width: 100%;
-    text-align: center;
-    padding-bottom: 10px;
-    .attr-item-title {
-      text-align: left;
-      min-width: 60px;
+  .attr-item-edit-input {
+    &.col-2 {
+      width: 90px;
+      margin-left: 10px;
+    }
+    &.col-1 {
+      width: 250px;
+    }
+    &.col-3 {
+      width: 60px;
+      margin-left: 10px;
+    }
+    &.col-4 {
+      width: 50px;
+      margin-left: 10px;
+    }
+    .attr-item-edit-input-des {
+      text-align: center;
+      line-height: 1;
+      margin-top: 2px;
       font-size: 12px;
-    }
-    .attr-item-edit-input {
-      &.col-2 {
-        width: 90px;
-        margin-left: 10px;
-      }
-      &.col-1 {
-        width: 250px;
-      }
-      &.col-3 {
-        width: 60px;
-        margin-left: 10px;
-      }
-      &.col-4 {
-        width: 50px;
-        margin-left: 10px;
-      }
-      .attr-item-edit-input-des {
-        text-align: center;
-        line-height: 1;
-        margin-top: 2px;
-        font-size: 12px;
-        color: $gray;
-      }
+      color: $gray;
     }
   }
+}
 </style>

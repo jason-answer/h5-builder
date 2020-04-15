@@ -4,12 +4,12 @@ const ObjectId = mongoose.Types.ObjectId
 
 // Schema
 const schema = new Schema({
-	_id: { type: ObjectId }, // 默认生成，不加也可以
-	url:  { type: String, default: '' },
-	author: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'user'
-	}
+  _id: { type: ObjectId }, // 默认生成，不加也可以
+  url: { type: String, default: '' },
+  author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  }
 })
 
 // Model

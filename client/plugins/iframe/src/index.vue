@@ -6,25 +6,20 @@
 </template>
 
 <script>
-	export default {
-		name: 'QkIframe', // 这个名字很重要，它就是未来的标签名
-		props: {
-			url: {
-				type: String,
-				default: "http://m.baidu.com/"
-			}
-		},
-		data() {
-			return {
-
-			}
-		},
-		methods: {
-
-		}
-	}
+export default {
+  name: "QkIframe", // 这个名字很重要，它就是未来的标签名
+  props: {
+    url: {
+      type: String,
+      default: "http://m.baidu.com/"
+    }
+  },
+  data() {
+    return {};
+  },
+  methods: {}
+};
 </script>
 
 <style lang="scss" scoped>
-
 </style>

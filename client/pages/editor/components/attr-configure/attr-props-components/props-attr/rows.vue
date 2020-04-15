@@ -5,30 +5,29 @@
 </template>
 
 <script>
-	export default {
-		name: "attr-qk-rows",
-		props: {
-			rows: Number
-		},
-		data() {
-			return {
-				temp: 3
-			}
-		},
-		watch: {
-			rows(val) {
-				this.temp = val;
-			},
-			tempText() {
-				this.$emit('update:rows', this.temp)
-			}
-		},
-		mounted() {
-			this.temp = this.rows;
-		}
-	}
+export default {
+  name: "attr-qk-rows",
+  props: {
+    rows: Number
+  },
+  data() {
+    return {
+      temp: 3
+    };
+  },
+  watch: {
+    rows(val) {
+      this.temp = val;
+    },
+    tempText() {
+      this.$emit("update:rows", this.temp);
+    }
+  },
+  mounted() {
+    this.temp = this.rows;
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

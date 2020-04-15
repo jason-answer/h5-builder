@@ -17,48 +17,45 @@
 </template>
 
 <script>
-	import baseAttr from './attr-props-components/base-attr'
-	import propsAttr from './attr-props-components/props-attr/index.vue'
-	import {mapState, mapGetters} from 'vuex'
+import baseAttr from "./attr-props-components/base-attr";
+import propsAttr from "./attr-props-components/props-attr/index.vue";
+import { mapState, mapGetters } from "vuex";
 
-	export default {
-		components: {
-			baseAttr,
-			propsAttr
-		},
-		props: {},
-		computed: {
-			...mapState({
-				projectData: state => state.editor.projectData,
-				activePageUUID: state => state.editor.activePageUUID,
-				activeElementUUID: state => state.editor.activeElementUUID
-			}),
-			...mapGetters([
-				'currentPageIndex',
-				'activeElementIndex'
-			])
-		}
-	}
+export default {
+  components: {
+    baseAttr,
+    propsAttr
+  },
+  props: {},
+  computed: {
+    ...mapState({
+      projectData: state => state.editor.projectData,
+      activePageUUID: state => state.editor.activePageUUID,
+      activeElementUUID: state => state.editor.activeElementUUID
+    }),
+    ...mapGetters(["currentPageIndex", "activeElementIndex"])
+  }
+};
 </script>
 
 <style scoped>
-  .components-attr-edit {
-    height: 100%;
-  }
+.components-attr-edit {
+  height: 100%;
+}
 
-  .attr-title {
-    font-weight: bold;
-  }
+.attr-title {
+  font-weight: bold;
+}
 
-  .sizeAndPosition-wrapper {
-    display: flex;
-    width: 100%;
-  }
+.sizeAndPosition-wrapper {
+  display: flex;
+  width: 100%;
+}
 </style>
 <style lang="scss">
-  .common-attr-style {
-    .el-form-item {
-      margin-bottom: 0;
-    }
+.common-attr-style {
+  .el-form-item {
+    margin-bottom: 0;
   }
+}
 </style>

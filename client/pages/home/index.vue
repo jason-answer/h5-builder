@@ -27,32 +27,28 @@
 </template>
 
 <script>
-
-	export default {
-
-	}
+export default {};
 </script>
 
 <style lang="scss" scoped>
-  .page-home {
-    display: flex;
-    width: 100%;
+.page-home {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: rgb(240, 243, 244);
+  .home-side-bar {
+    width: 200px;
+    background-color: #fff;
+    border-right: 1px solid #e6ebed;
+    padding-top: 8px;
+    z-index: 2;
+  }
+  .my-page-list {
+    flex: 1;
     height: 100%;
-    background: rgb(240, 243, 244);
-    .home-side-bar{
-      width: 200px;
-      background-color: #fff;
-      border-right: 1px solid #e6ebed;
-      padding-top: 8px;
-      z-index: 2;
-    }
-    .my-page-list{
-      flex: 1;
+    .sub-page {
       height: 100%;
-      .sub-page{
-        height: 100%;
-      }
     }
   }
-
+}
 </style>

@@ -45,111 +45,114 @@
 </template>
 
 <script>
-	import previewWrapper from '@client/components/preview-wrapper'
-	import QrcodeVue from 'qrcode.vue'
-	export default {
-		components: {
-			previewWrapper,
-			QrcodeVue
-		},
-		props: {
-			pageId: String
-		},
-		data() {
-			return {
-				loading: true,
-				defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
-				pageData: {}
-			}
-		},
-		computed: {
-			pageLink(){
-				return this.$config.baseURL + '/page/view/' + this.pageId
-			},
-			shareData(){
-				if(!this.pageData.shareConfig){
-					return {}
-				}
-				if(this.pageData.shareConfig.shareWx){
-					return {
-						coverImage: this.pageData.shareConfig.coverImage,
-						title: this.pageData.shareConfig.title,
-						description: this.pageData.shareConfig.description,
-					}
-				}else{
-					return {
-						coverImage: this.pageData.coverImage,
-						title: this.pageData.title,
-						description: this.pageData.description,
-					}
-				}
-			}
-		},
-		created(){
-			this.getData()
-		},
-		methods: {
-			/**
-			 * 关闭弹窗事件
-			 */
-			closePreview() {
-				this.$emit('closePreview', false);
-			},
-			getData(){
-				this.loading = true;
-				this.$axios.get('/page/detail/' + this.pageId).then(res => {
-					this.loading = false;
-					this.pageData = res.body;
-				}).catch(() => {
-					this.loading = false;
-				})
-			},
-			doCopy: function () {
-				this.$copyText(this.pageLink).then(() => {
-					this.$message.success('已复制')
-				})
-			}
-		}
-	}
+import previewWrapper from "@client/components/preview-wrapper";
+import QrcodeVue from "qrcode.vue";
+export default {
+  components: {
+    previewWrapper,
+    QrcodeVue
+  },
+  props: {
+    pageId: String
+  },
+  data() {
+    return {
+      loading: true,
+      defaultCoverImage: require("@client/common/images/quark--pagecover-image.png"),
+      pageData: {}
+    };
+  },
+  computed: {
+    pageLink() {
+      return this.$config.baseURL + "/page/view/" + this.pageId;
+    },
+    shareData() {
+      if (!this.pageData.shareConfig) {
+        return {};
+      }
+      if (this.pageData.shareConfig.shareWx) {
+        return {
+          coverImage: this.pageData.shareConfig.coverImage,
+          title: this.pageData.shareConfig.title,
+          description: this.pageData.shareConfig.description
+        };
+      } else {
+        return {
+          coverImage: this.pageData.coverImage,
+          title: this.pageData.title,
+          description: this.pageData.description
+        };
+      }
+    }
+  },
+  created() {
+    this.getData();
+  },
+  methods: {
+    /**
+     * 关闭弹窗事件
+     */
+    closePreview() {
+      this.$emit("closePreview", false);
+    },
+    getData() {
+      this.loading = true;
+      this.$axios
+        .get("/page/detail/" + this.pageId)
+        .then(res => {
+          this.loading = false;
+          this.pageData = res.body;
+        })
+        .catch(() => {
+          this.loading = false;
+        });
+    },
+    doCopy: function() {
+      this.$copyText(this.pageLink).then(() => {
+        this.$message.success("已复制");
+      });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .preview-info-wrapper {
-    padding: 30px 30px 60px;
-    font-size: 16px;
-  }
+.preview-info-wrapper {
+  padding: 30px 30px 60px;
+  font-size: 16px;
+}
 
-  .page-info {
-    display: flex;
-    padding: 12px;
-    background-color: #f0f3f4;
-    .page-cover {
-      width: 80px;
-      height: 80px;
-      overflow: hidden;
-    }
-    .page-title-des {
-      padding-left: 20px;
-      flex: 1;
+.page-info {
+  display: flex;
+  padding: 12px;
+  background-color: #f0f3f4;
+  .page-cover {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+  }
+  .page-title-des {
+    padding-left: 20px;
+    flex: 1;
+  }
+}
+.info-form-wrapper {
+  display: flex;
+  padding-bottom: 16px;
+  .info-form-l {
+    line-height: 42px;
+    &.com-width {
+      width: 120px;
     }
   }
-  .info-form-wrapper {
-    display: flex;
-    padding-bottom: 16px;
-    .info-form-l {
-      line-height: 42px;
-      &.com-width {
-        width: 120px;
-      }
-    }
-    .info-form-r {
-      flex: 1;
-      padding-left: 10px;
-    }
+  .info-form-r {
+    flex: 1;
+    padding-left: 10px;
   }
-  .share-wx-config-wrapper {
-    margin-top: 14px;
-    padding: 12px;
-    background-color: #f0f3f4;
-  }
+}
+.share-wx-config-wrapper {
+  margin-top: 14px;
+  padding: 12px;
+  background-color: #f0f3f4;
+}
 </style>

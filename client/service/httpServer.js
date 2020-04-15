@@ -13,7 +13,7 @@ axios.defaults.timeout = 30000; // 超时时间
 
 //请求拦截器
 axios.interceptors.request.use(config => {
-	config.headers.Authorization = store.getters.authorization;
+  config.headers.Authorization = store.getters.authorization;
   return config
 }, error => {
   return Promise.reject(error)
@@ -24,8 +24,8 @@ axios.interceptors.response.use(response => {
     return Promise.resolve(response.data)
   } else {
     store.dispatch('showMassage', {
-    type: 'error',
-    message: response.data.message || response.data.msg || response.data.errMsg
+      type: 'error',
+      message: response.data.message || response.data.msg || response.data.errMsg
     });
     return Promise.reject(response)
   }
@@ -94,7 +94,7 @@ export default {
         ...(header || {})
       },
       responseType: responseType,
-      params: param || {},
+      params: param || {}
     })
   },
   //post请求
@@ -106,7 +106,7 @@ export default {
         ...(header || {}),
         'Content-Type': 'application/json;charse=UTF-8'
       },
-      data: param || {},
+      data: param || {}
     })
   },
   postFormData(url, params, header) {
@@ -117,7 +117,7 @@ export default {
         ...(header || {}),
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      data: QS.stringify(params) || {},
+      data: QS.stringify(params) || {}
     })
   },
   //post请求
@@ -129,7 +129,7 @@ export default {
         ...(header || {}),
         'Content-Type': 'application/json;charse=UTF-8'
       },
-      data: param || {},
+      data: param || {}
     })
   },
   // delete
@@ -140,7 +140,7 @@ export default {
       headers: {
         ...(header || {})
       },
-      params: param || {},
+      params: param || {}
     })
   },
   // 此方法非promise 导出文件

@@ -7,11 +7,11 @@ import placeholder from './placeholder'
 import rows from './rows'
 
 export default {
-	[Text.name]: Text,
-	[imageSrc.name]: imageSrc,
-	[Url.name]: Url,
-	[musicSrc.name]: musicSrc,
-	[imageSrcList.name]: imageSrcList,
-	[placeholder.name]: placeholder,
-	[rows.name]: rows
+  [Text.name]: Text,
+  [imageSrc.name]: imageSrc,
+  [Url.name]: Url,
+  [musicSrc.name]: musicSrc,
+  [imageSrcList.name]: imageSrcList,
+  [placeholder.name]: placeholder,
+  [rows.name]: rows
 }

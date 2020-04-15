@@ -10,36 +10,36 @@
 </template>
 
 <script>
-	export default {
-		name: "notFundData",
-		props: {
-			width: {
-				type: String,
-				default: '128px'
-			},
-			height: {
-				type: String,
-				default: '86px'
-			}
-		},
-	}
+export default {
+  name: "notFundData",
+  props: {
+    width: {
+      type: String,
+      default: "128px"
+    },
+    height: {
+      type: String,
+      default: "86px"
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  .components-default-style {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.components-default-style {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    & > div {
-      display: inline-block;
-    }
-    .default-style-img {
-      display: inline-block;
-    }
+  & > div {
+    display: inline-block;
   }
+  .default-style-img {
+    display: inline-block;
+  }
+}
 </style>

@@ -2,22 +2,22 @@
  *  登陆相关mixins
  * */
 export default {
-	data() {
-		return {
+  data() {
+    return {
 
-		}
-	},
-	methods: {
-		/**
+    }
+  },
+  methods: {
+    /**
 		 * 退出登录
 		 */
-		_logout() {
-			this.$store.commit('UPDATE_OAUTH', {});
-			sessionStorage.clear();
-			this._linkToLogout();
-		},
-		_linkToLogout(){
-			this.$router.push({path: '/login'})
-		},
-	}
+    _logout() {
+      this.$store.commit('UPDATE_OAUTH', {});
+      sessionStorage.clear();
+      this._linkToLogout();
+    },
+    _linkToLogout() {
+      this.$router.push({ path: '/login' })
+    }
+  }
 }

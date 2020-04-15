@@ -23,7 +23,7 @@ const state = {
 
 };
 const actions = {
-	/**
+  /**
 	 * 初始化编辑项目数据
 	 * @param state
 	 * @param data
@@ -40,7 +40,7 @@ const actions = {
     }
     dispatch('setActivePageUUID', state.projectData.pages[0].uuid)
   },
-	/**
+  /**
 	 * 设置当前选中页面uuid
 	 * @param state
 	 * @param data
@@ -50,7 +50,7 @@ const actions = {
     // 当前选中页面切换后清空元素选中的uuid
     commit('setActiveElementUUID', '');
   },
-	/**
+  /**
 	 * 设置当前选中激活元素uuid
 	 * @param state
 	 * @param data
@@ -59,7 +59,7 @@ const actions = {
     commit('setActiveElementUUID', uuid);
   },
   // ========================项目操作=========================
-	/**
+  /**
 	 *
 	 * @param commit
 	 * @param url
@@ -69,7 +69,7 @@ const actions = {
   },
 
   // =====================页面操作============================
-	/**
+  /**
 	 * 添加页面
 	 * @param commit
 	 */
@@ -84,7 +84,7 @@ const actions = {
     commit('insertPage', data, index);
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 删除页
 	 * @param commit
 	 * @param dispatch
@@ -107,7 +107,7 @@ const actions = {
     commit('deletePage', index)
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 复制页面
 	 * @param commit
 	 * @param uuid
@@ -121,7 +121,7 @@ const actions = {
 
   // =============================元素相关========================================
 
-	/**
+  /**
 	 * 添加元素
 	 * @param commit
 	 * @param data
@@ -140,7 +140,7 @@ const actions = {
     commit('setActiveElementUUID', data.uuid)
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 元素指令， 用于结束针对元素修改相关指令，再由此方法派发actions做具体修改
 	 * @param dispatch
 	 * @param type
@@ -209,7 +209,7 @@ const actions = {
     commit('resetElementCommonStyle', style)
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 添加动画到元素上
 	 * @param commit
 	 * @param animationName
@@ -226,7 +226,7 @@ const actions = {
     commit('addElementAnimate', animateDefaultData)
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 删除动画
 	 * @param commit
 	 * @param index
@@ -236,7 +236,7 @@ const actions = {
     commit('addHistoryCache')
   },
 
-	/**
+  /**
 	 * 添加事件
 	 * @param commit
 	 * @param type
@@ -250,7 +250,7 @@ const actions = {
     commit('addElementEvent', eventDefaultData)
     commit('addHistoryCache')
   },
-	/**
+  /**
 	 * 删除事件
 	 * @param commit
 	 * @param index
@@ -261,7 +261,7 @@ const actions = {
   },
 
   // =====================历史纪录=======================
-	/**
+  /**
 	 * 记入历史纪录
 	 * @param commit
 	 * @param index 插入到index后
@@ -307,7 +307,7 @@ const mutations = {
   setActiveElementUUID(state, data) {
     state.activeElementUUID = data;
   },
-	/**
+  /**
 	 * 更新项目主图
 	 * @param commit
 	 * @param url
@@ -315,7 +315,7 @@ const mutations = {
   updateCoverImage(state, url) {
     state.projectData.coverImage = url
   },
-	/**
+  /**
 	 * 新增页面
 	 */
   insertPage(state, data, index) {
@@ -325,7 +325,7 @@ const mutations = {
       state.projectData.pages.push(data)
     }
   },
-	/**
+  /**
 	 * 删除页面
 	 */
   deletePage(state, index) {
@@ -334,7 +334,7 @@ const mutations = {
 
   // =============================元素相关========================================
 
-	/**
+  /**
 	 * 往画板添加元素
 	 * @param state
 	 * @param elData
@@ -343,9 +343,9 @@ const mutations = {
     let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID })
 
     state.projectData.pages[index].elements.push(elData);
-    
+
   },
-	/**
+  /**
 	 * 往画板添加元素
 	 * @param state
 	 * @param elData  activeElementIndex
@@ -355,7 +355,7 @@ const mutations = {
     let elementIndex = activePage.elements.findIndex(v => { return v.uuid === uuid })
     activePage.elements.splice(elementIndex, 1)
   },
-	/**
+  /**
 	 * 重置元素样式，
 	 * @param commit
 	 * @param uuid
@@ -366,7 +366,7 @@ const mutations = {
     activeElement.commonStyle = _.merge(activeElement.commonStyle, style)
   },
 
-	/**
+  /**
 	 * 添加动画到元素上
 	 * @param state
 	 * @param data
@@ -375,7 +375,7 @@ const mutations = {
     let activeElement = getters.activeElement(state)
     activeElement.animations.push(data)
   },
-	/**
+  /**
 	 * 删除动画到元素上
 	 * @param state
 	 * @param index
@@ -384,7 +384,7 @@ const mutations = {
     let activeElement = getters.activeElement(state)
     activeElement.animations.splice(index, 1)
   },
-	/**
+  /**
 	 * 添加事件
 	 * @param state
 	 * @param data
@@ -393,7 +393,7 @@ const mutations = {
     let activeElement = getters.activeElement(state)
     activeElement.events.push(data)
   },
-	/**
+  /**
 	 * 删除事件
 	 * @param state
 	 * @param index
@@ -402,7 +402,7 @@ const mutations = {
     let activeElement = getters.activeElement(state)
     activeElement.events.splice(index, 1)
   },
-	/**
+  /**
 	 * 改变元素zIndex
 	 * @param state
 	 * @param uuid
@@ -447,7 +447,7 @@ const mutations = {
   },
 
   // ================================历史纪录========================================
-	/**
+  /**
 	 * 新增一条历史纪录
 	 * @param state
 	 */
@@ -464,21 +464,21 @@ const mutations = {
     state.historyCache.splice(100)
     state.currentHistoryIndex++
   },
-	/**
+  /**
 	 *
 	 * @param state
 	 */
   editorUndo(state) {
     state.currentHistoryIndex--
   },
-	/**
+  /**
 	 *
 	 * @param state
 	 */
   editorRedo(state) {
     state.currentHistoryIndex++
   },
-	/**
+  /**
 	 * 更新编辑器项目数据，从history中拿数据替换
 	 * @param state
 	 * @param data
@@ -488,7 +488,7 @@ const mutations = {
     state.activePageUUID = data.activePageUUID
     state.activeElementUUID = data.activeElementUUID
   },
-	/**
+  /**
 	 * 设置编辑属性折叠面板展开收起状态
 	 * @param state
 	 * @param data
@@ -499,7 +499,7 @@ const mutations = {
   /**
    * 当添加组件的是时候 重新设置画板的高度
    */
-  resetEditorHeight(state){
+  resetEditorHeight(state) {
     let editorHeight = 0;
     let index = state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID })
     _(state.projectData.pages[index].elements).forEach(function(value) {
@@ -509,14 +509,14 @@ const mutations = {
     if (editorHeight > editorProjectConfig.projectConfig.height) {
       // 增加10px的增量像素
       state.projectData.height = editorHeight + 10;
-    }else{
+    } else {
       state.projectData.height = editorProjectConfig.projectConfig.height;
     }
     // console.log(editorHeight);
   }
 };
 const getters = {
-	/**
+  /**
 	 * 当前选中的页面index
 	 * @param state
 	 * @returns {*}
@@ -528,7 +528,7 @@ const getters = {
     }
     return state.projectData.pages.findIndex(v => { return v.uuid === state.activePageUUID })
   },
-	/**
+  /**
 	 * 当前选中的页面index
 	 * @param state
 	 * @returns {*}
@@ -544,7 +544,7 @@ const getters = {
     }
     return state.projectData.pages[currentPageIndex].elements.findIndex(v => { return v.uuid === state.activeElementUUID })
   },
-	/**
+  /**
 	 * 当前选中的页面
 	 */
   activePage() {
@@ -554,7 +554,7 @@ const getters = {
     }
     return state.projectData.pages.find(v => { return v.uuid === state.activePageUUID })
   },
-	/**
+  /**
 	 * 当前选中元素
 	 */
   activeElement() {

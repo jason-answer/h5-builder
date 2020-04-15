@@ -10,11 +10,10 @@
 </template>
 
 <script>
-	export default {
-		name: "image-libs"
-	}
+export default {
+  name: "image-libs"
+};
 </script>
 
 <style scoped>
-
 </style>

@@ -6,16 +6,16 @@
 </template>
 
 <script>
-	import notFundData from '@client/components/notFundData'
-	export default {
-		components: {
-			notFundData
-		}
-	}
+import notFundData from "@client/components/notFundData";
+export default {
+  components: {
+    notFundData
+  }
+};
 </script>
 
 <style scoped>
-  .page-data-list{
-    height: 100%;
-  }
+.page-data-list {
+  height: 100%;
+}
 </style>
