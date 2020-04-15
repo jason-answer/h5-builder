@@ -1,7 +1,7 @@
 <!--test.vue-->
 <template>
   <div class="qk-textarea">
-    <textarea class="qk-textarea-item" :placeholder="placeholder" v-model="tempValue"/>
+    <textarea v-model="tempValue" class="qk-textarea-item" :placeholder="placeholder" />
   </div>
 </template>
 
@@ -22,9 +22,6 @@
 				tempValue: ''
 			}
 		},
-		created() {
-			this.tempValue = this.value;
-		},
 		watch: {
 			value(val) {
 				this.tempValue = val;
@@ -32,6 +29,9 @@
 			tempValue() {
 				this.$emit('input', this.temp)
 			}
+		},
+		created() {
+			this.tempValue = this.value;
 		}
 	}
 </script>

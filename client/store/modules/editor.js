@@ -505,14 +505,14 @@ const mutations = {
     _(state.projectData.pages[index].elements).forEach(function(value) {
       editorHeight = editorHeight + value.commonStyle.height;
     });
-    debugger
+    // debugger
     if (editorHeight > editorProjectConfig.projectConfig.height) {
       // 增加10px的增量像素
       state.projectData.height = editorHeight + 10;
     }else{
       state.projectData.height = editorProjectConfig.projectConfig.height;
     }
-    console.log(editorHeight);
+    // console.log(editorHeight);
   }
 };
 const getters = {

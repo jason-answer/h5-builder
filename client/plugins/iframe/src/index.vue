@@ -1,7 +1,7 @@
 <!--test.vue-->
 <template>
   <div class="qk-iframe">
-    <iframe :src="url" frameborder="0" style="background-color:transparent;width: 100%; min-height: 100%;"></iframe>
+    <iframe :src="url" frameborder="0" style="background-color:transparent;width: 100%; min-height: 100%;" />
   </div>
 </template>
 

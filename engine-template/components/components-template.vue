@@ -1,6 +1,6 @@
 <template>
   <div class="quark-element-wrapper" @click="handleClick">
-    <component :is="element.elName" class="quark-element" v-bind="element.propsValue"/>
+    <component :is="element.elName" class="quark-element" v-bind="element.propsValue" />
   </div>
 </template>
 
@@ -15,13 +15,13 @@
 			// 批量注册qk组件
 			..._qk_register_components_object,
 		},
+		mixins: [elementEvents],
 		props: {
 			element: {
 				type: Object,
 				require: true
 			}
 		},
-		mixins: [elementEvents],
 		mounted() {
 			let cssText = this.$el.style.cssText;
 			let animations = this.element.animations || [];

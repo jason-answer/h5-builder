@@ -2,14 +2,14 @@
   <el-form-item label="图片列表：">
     <div>&nbsp;</div>
     <div>
-      <div class="attr-edit-wrapper" v-for="(item, index) in tempValue" :key="index">
-        <imageSelect :url.sync="item.url" @change="change"/>
+      <div v-for="(item, index) in tempValue" :key="index" class="attr-edit-wrapper">
+        <imageSelect :url.sync="item.url" @change="change" />
         <div class="attr-edit-btn-wrapper">
           <span class="imageSelect-btn" @click="add(index)">
-            <i class="el-icon-circle-plus-outline"></i>
+            <i class="el-icon-circle-plus-outline" />
           </span>
-          <span class="imageSelect-btn error" @click="del(index)" v-show="tempValue.length > 1">
-            <i class="el-icon-remove-outline"></i>
+          <span v-show="tempValue.length > 1" class="imageSelect-btn error" @click="del(index)">
+            <i class="el-icon-remove-outline" />
           </span>
         </div>
       </div>
@@ -22,22 +22,19 @@
 
 	export default {
 		name: "attr-qk-imageSrcList",
+		components: {
+			imageSelect
+		},
 		props: {
 			imageSrcList: {
 				type: Array,
 				default: () => []
 			}
 		},
-		components: {
-			imageSelect
-		},
 		data() {
 			return {
 				tempValue: []
 			}
-		},
-		created() {
-			this.initData()
 		},
 		watch: {
 			imageSrc() {
@@ -46,6 +43,9 @@
 			tempValue() {
 				this.change()
 			}
+		},
+		created() {
+			this.initData()
 		},
 		methods: {
 			initData() {

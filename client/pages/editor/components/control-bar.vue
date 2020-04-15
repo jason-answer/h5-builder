@@ -5,41 +5,41 @@
   <div class="components-contrl-bar">
     <div class="button-item scale-wrappper">
       <span class="scale-btn" @click="updateScale('reduce')">
-        <i class="el-icon-zoom-out"></i>
+        <i class="el-icon-zoom-out" />
       </span>
-      <span class="scale-input">{{parseFloat(scaleValue * 100).toFixed(0)}}%</span>
+      <span class="scale-input">{{ parseFloat(scaleValue * 100).toFixed(0) }}%</span>
       <span class="scale-btn" @click="updateScale('plus')">
-        <i class="el-icon-zoom-in"></i>
+        <i class="el-icon-zoom-in" />
       </span>
     </div>
     <div class="button-item" :class="{disabled: !canUndo}" @click="editorUndo">
-      <i class="iconfont iconundo1"></i>
+      <i class="iconfont iconundo1" />
       <p>撤销</p>
     </div>
     <div class="button-item" :class="{disabled: !canRedo}" @click="editorRedo">
-      <i class="iconfont iconredo1"></i>
+      <i class="iconfont iconredo1" />
       <p>重做</p>
     </div>
     <div class="button-item" @click="showPreview">
-      <i class="iconfont iconyulan"></i>
+      <i class="iconfont iconyulan" />
       <p>预览</p>
     </div>
     <UploadPsd @upload-success="uploadSuccessPsd">
       <div class="button-item">
-        <i class="iconfont iconps"></i>
+        <i class="iconfont iconps" />
         <p>导入psd</p>
       </div>
     </UploadPsd>
     <div class="button-item" @click="save">
-      <i class="iconfont iconbaocun"></i>
+      <i class="iconfont iconbaocun" />
       <p>保存</p>
     </div>
     <div class="button-item" @click="publishFn">
-      <i class="iconfont iconfabu"></i>
+      <i class="iconfont iconfabu" />
       <p>发布</p>
     </div>
     <div class="button-item" @click="cancelFn">
-      <i class="iconfont icontuichu"></i>
+      <i class="iconfont icontuichu" />
       <p>退出</p>
     </div>
   </div>

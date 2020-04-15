@@ -1,18 +1,25 @@
 <template>
-  <previewWrapper :pageId="pageId" @closePreview="closePreview" v-loading="loading">
-    <p class="page-title paddingL30">页面预览</p>
-    <div class="preview-info-wrapper" v-if="!loading">
+  <previewWrapper v-loading="loading" :page-id="pageId" @closePreview="closePreview">
+    <p class="page-title paddingL30">
+      页面预览
+    </p>
+    <div v-if="!loading" class="preview-info-wrapper">
       <el-form label-width="90px" label-position="left">
         <el-form-item label="页面二维码:">
-          <QrcodeVue  :value="pageLink" :size="120" level="H"></QrcodeVue>
+          <QrcodeVue :value="pageLink" :size="120" level="H" />
         </el-form-item>
         <el-form-item label="页面链接:">
-          <div><el-button type="primary" @click="doCopy">复制链接</el-button></div>
-          <div class="share-wx-config-wrapper">{{$config.baseURL + '/page/view/' + pageId}}</div>
+          <div>
+            <el-button type="primary" @click="doCopy">
+              复制链接
+            </el-button>
+          </div>
+          <div class="share-wx-config-wrapper">
+            {{ $config.baseURL + '/page/view/' + pageId }}
+          </div>
         </el-form-item>
         <!--页面效果-->
-        <el-form-item label="页面信息:">
-        </el-form-item>
+        <el-form-item label="页面信息:" />
       </el-form>
 
       <div class="page-info">
@@ -21,10 +28,10 @@
         </div>
         <div class="page-title-des paddingT10">
           <div class="info-form-wrapper">
-            {{shareData.title}}
+            {{ shareData.title }}
           </div>
           <div class="info-form-wrapper ellipsis">
-            {{shareData.description}}
+            {{ shareData.description }}
           </div>
         </div>
       </div>
@@ -55,9 +62,6 @@
 				pageData: {}
 			}
 		},
-		created(){
-			this.getData()
-		},
 		computed: {
 			pageLink(){
 				return this.$config.baseURL + '/page/view/' + this.pageId
@@ -80,6 +84,9 @@
 					}
 				}
 			}
+		},
+		created(){
+			this.getData()
 		},
 		methods: {
 			/**

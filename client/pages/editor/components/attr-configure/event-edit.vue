@@ -1,36 +1,43 @@
 <template>
   <div class="components-attr-edit">
     <el-scrollbar class="components-attr-edit">
-      <div class="attr-edit-inner" v-if="activeElementUUID">
+      <div v-if="activeElementUUID" class="attr-edit-inner">
         <div class="animate-edit-btn-wrapper">
           <el-dropdown>
             <el-button type="primary" size="small">
-              添加事件<i class="el-icon-arrow-down el-icon--right"></i>
+              添加事件<i class="el-icon-arrow-down el-icon--right" />
             </el-button>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item v-for="(item, index) in eventTypeList" :key="index">
-                <div @click="addEvent(item.value)">{{item.label}}</div>
+                <div @click="addEvent(item.value)">
+                  {{ item.label }}
+                </div>
               </el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <p class="gray inline-block fontsize-12 marginL10">事件在编辑模式下无效果</p>
+          <p class="gray inline-block fontsize-12 marginL10">
+            事件在编辑模式下无效果
+          </p>
         </div>
-        <div class="el-animate-list-wrapper paddingT20" v-show="activeElement.events.length">
+        <div v-show="activeElement.events.length" class="el-animate-list-wrapper paddingT20">
           <el-collapse accordion>
             <el-collapse-item v-for="(item, index) in activeElement.events" :key="index">
               <template slot="title">
-                <span class="el-animate-title-name">事件 {{index + 1}}</span>
+                <span class="el-animate-title-name">事件 {{ index + 1 }}</span>
                 <div class="el-animate-title-type-wrapper">
-                  <span class="el-animate-title-type">{{item.type | getLabelText(eventTypeList)}}</span>
+                  <span class="el-animate-title-type">{{ item.type | getLabelText(eventTypeList) }}</span>
                 </div>
                 <span class="el-animate-title-btn" @click.stop.prevent="deleteEvent(index)"><i
-                        class="el-icon-delete"></i></span>
+                  class="el-icon-delete"
+                /></span>
               </template>
               <div class="el-animate-item">
-                <div class="attr-item-edit-wrapper" v-show="item.type !== 'share'">
-                  <p class="attr-item-title">链接/接口url：</p>
+                <div v-show="item.type !== 'share'" class="attr-item-edit-wrapper">
+                  <p class="attr-item-title">
+                    链接/接口url：
+                  </p>
                   <div class="col-1  attr-item-edit-input">
-                    <el-input type="textarea" :rows="3" placeholder="请输入url" v-model="item.url" />
+                    <el-input v-model="item.url" type="textarea" :rows="3" placeholder="请输入url" />
                   </div>
                 </div>
               </div>
@@ -39,7 +46,9 @@
         </div>
       </div>
       <div v-else>
-        <p class="gray paddingT30 text-center">请在画板上选择需要编辑得元素</p>
+        <p class="gray paddingT30 text-center">
+          请在画板上选择需要编辑得元素
+        </p>
       </div>
     </el-scrollbar>
   </div>

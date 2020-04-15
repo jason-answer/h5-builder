@@ -1,11 +1,11 @@
 <template>
   <el-form-item label="文本内容：">
     <el-input
-            type="textarea"
-            :rows="2"
-            placeholder="请输入文本内容"
-            v-model="tempText">
-    </el-input>
+      v-model="tempText"
+      type="textarea"
+      :rows="2"
+      placeholder="请输入文本内容"
+    />
   </el-form-item>
 </template>
 
@@ -20,9 +20,6 @@
 				tempText: ''
 			}
 		},
-		mounted() {
-			this.tempText = this.text;
-		},
 		watch: {
 			text() {
 				this.tempText = this.text;
@@ -30,6 +27,9 @@
 			tempText() {
 				this.$emit('update:text', this.tempText)
 			}
+		},
+		mounted() {
+			this.tempText = this.text;
 		}
 	}
 </script>

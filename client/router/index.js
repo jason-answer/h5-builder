@@ -47,7 +47,7 @@ export default new Router({
 		meta: {
 			hideHeader: true,
 			trust: true,
-			noNeedLogin: true
+      noNeedLogin: true
 		}
 	}]
 })

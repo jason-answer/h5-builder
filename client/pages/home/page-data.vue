@@ -1,8 +1,8 @@
 <template>
-<div class="page-data-list">
-  <div></div>
-  <notFundData />
-</div>
+  <div class="page-data-list">
+    <div />
+    <notFundData />
+  </div>
 </template>
 
 <script>

@@ -17,8 +17,10 @@ module.exports = {
 	connect: ()=> {
 		mongoose.connect(url,options)
 		let db = mongoose.connection
+		// eslint-disable-next-line no-console
 		db.on('error', console.error.bind(console, '连接错误:'));
 		db.once('open', ()=> {
+			// eslint-disable-next-line no-console
 			console.log('mongodb connect suucess');
 		})
 	}

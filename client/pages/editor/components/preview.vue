@@ -1,22 +1,28 @@
 <template>
-  <previewWrapper :pageId="pageId" @closePreview="closePreview">
-    <p class="page-title paddingL30">页面基础设置</p>
+  <previewWrapper :page-id="pageId" @closePreview="closePreview">
+    <p class="page-title paddingL30">
+      页面基础设置
+    </p>
     <div class="preview-info-wrapper">
       <div class="page-info">
         <div class="page-cover">
-          <imageCropper :url.sync="pageData.coverImage"/>
+          <imageCropper :url.sync="pageData.coverImage" />
         </div>
         <div class="page-title-des">
           <div class="info-form-wrapper">
-            <div class="info-form-l">标题：</div>
+            <div class="info-form-l">
+              标题：
+            </div>
             <div class="info-form-r">
-              <el-input v-model="pageData.title"/>
+              <el-input v-model="pageData.title" />
             </div>
           </div>
           <div class="info-form-wrapper">
-            <div class="info-form-l">描述：</div>
+            <div class="info-form-l">
+              描述：
+            </div>
             <div class="info-form-r">
-              <el-input type="textarea" :rows="2" v-model="pageData.description"/>
+              <el-input v-model="pageData.description" type="textarea" :rows="2" />
             </div>
           </div>
         </div>
@@ -24,25 +30,31 @@
       <!--翻页方式-->
       <div class="info-form-wrapper">
         <div class="info-form-l">
-          <el-checkbox v-model="pageData.shareConfig.shareWx">设置微信分享样式</el-checkbox>
+          <el-checkbox v-model="pageData.shareConfig.shareWx">
+            设置微信分享样式
+          </el-checkbox>
         </div>
       </div>
       <div v-show="pageData.shareConfig.shareWx" class="share-wx-config-wrapper marginB30">
         <div class="info-form-r page-info">
           <div class="page-cover">
-            <imageCropper :url.sync="pageData.shareConfig.coverImage"/>
+            <imageCropper :url.sync="pageData.shareConfig.coverImage" />
           </div>
           <div class="page-title-des">
             <div class="info-form-wrapper">
-              <div class="info-form-l">分享标题：</div>
+              <div class="info-form-l">
+                分享标题：
+              </div>
               <div class="info-form-r">
-                <el-input v-model="pageData.shareConfig.title"/>
+                <el-input v-model="pageData.shareConfig.title" />
               </div>
             </div>
             <div class="info-form-wrapper">
-              <div class="info-form-l">分享描述：</div>
+              <div class="info-form-l">
+                分享描述：
+              </div>
               <div class="info-form-r">
-                <el-input type="textarea" :rows="2" v-model="pageData.shareConfig.description"/>
+                <el-input v-model="pageData.shareConfig.description" type="textarea" :rows="2" />
               </div>
             </div>
           </div>
@@ -50,36 +62,48 @@
       </div>
       <!--翻页方式-->
       <div class="info-form-wrapper">
-        <div class="info-form-l com-width">翻页方式：</div>
+        <div class="info-form-l com-width">
+          翻页方式：
+        </div>
         <div class="info-form-r">
           <el-select v-model="pageData.flipType">
-            <el-option label="上下翻页" :value="0"/>
-            <el-option label="左右翻页" :value="1"/>
-            <el-option label="翻书效果" :value="2"/>
+            <el-option label="上下翻页" :value="0" />
+            <el-option label="左右翻页" :value="1" />
+            <el-option label="翻书效果" :value="2" />
           </el-select>
         </div>
       </div>
       <!--翻页方式-->
       <div class="info-form-wrapper">
-        <div class="info-form-l com-width"></div>
+        <div class="info-form-l com-width" />
         <div class="info-form-r">
-          <el-checkbox v-model="pageData.slideNumber">显示页码</el-checkbox>
+          <el-checkbox v-model="pageData.slideNumber">
+            显示页码
+          </el-checkbox>
         </div>
       </div>
       <!--作品访问状态-->
       <div class="info-form-wrapper">
-        <div class="info-form-l com-width">作品访问状态：</div>
+        <div class="info-form-l com-width">
+          作品访问状态：
+        </div>
         <div class="info-form-r">
           <el-select v-model="pageData.status">
-            <el-option label="允许访问" :value="1"/>
-            <el-option label="不允许访问" :value="0"/>
+            <el-option label="允许访问" :value="1" />
+            <el-option label="不允许访问" :value="0" />
           </el-select>
         </div>
       </div>
       <div class="foot-btn-wrapper">
-        <el-button type="primary" @click="publishFn">发 布</el-button>
-        <el-button @click="saveFn">保 存</el-button>
-        <el-button @click="closePreview">取 消</el-button>
+        <el-button type="primary" @click="publishFn">
+          发 布
+        </el-button>
+        <el-button @click="saveFn">
+          保 存
+        </el-button>
+        <el-button @click="closePreview">
+          取 消
+        </el-button>
       </div>
     </div>
   </previewWrapper>

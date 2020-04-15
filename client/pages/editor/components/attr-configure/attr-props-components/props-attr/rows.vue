@@ -1,6 +1,6 @@
 <template>
   <el-form-item label="占行数：">
-    <el-input-number size="mini" v-model="temp" controls-position="right" :min="1" />
+    <el-input-number v-model="temp" size="mini" controls-position="right" :min="1" />
   </el-form-item>
 </template>
 
@@ -15,9 +15,6 @@
 				temp: 3
 			}
 		},
-		mounted() {
-			this.temp = this.rows;
-		},
 		watch: {
 			rows(val) {
 				this.temp = val;
@@ -25,6 +22,9 @@
 			tempText() {
 				this.$emit('update:rows', this.temp)
 			}
+		},
+		mounted() {
+			this.temp = this.rows;
 		}
 	}
 </script>

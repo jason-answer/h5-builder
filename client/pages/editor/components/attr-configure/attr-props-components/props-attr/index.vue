@@ -1,11 +1,14 @@
 <template>
   <div v-if="currentElementProps.length">
-    <div class="attr-title marginB10 fontBold">组件属性</div>
+    <div class="attr-title marginB10 fontBold">
+      组件属性
+    </div>
     <el-form>
       <component
-              v-for="item in currentElementProps"
-              :key="item" :is="'attr-qk-' + item"
-              v-bind.sync="activeElement.propsValue"
+        :is="'attr-qk-' + item"
+        v-for="item in currentElementProps"
+        :key="item"
+        v-bind.sync="activeElement.propsValue"
       />
     </el-form>
   </div>

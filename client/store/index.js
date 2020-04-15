@@ -21,7 +21,7 @@ const actions = {
 	 * @param msg
 	 */
 	showMassage(store, msg) {
-		console.log(msg)
+		// console.log(msg)
 		Message({
 			type: msg.type,
 			message: msg.message || msg.data

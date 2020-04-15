@@ -1,35 +1,58 @@
 <template>
   <el-scrollbar class="components-attr-edit">
-    <p class="page-title fontBold">当前页样式</p>
+    <p class="page-title fontBold">
+      当前页样式
+    </p>
     <div class="attr-item-edit-wrapper">
-      <p class="attr-item-title">背景颜色：</p>
+      <p class="attr-item-title">
+        背景颜色：
+      </p>
       <div class="attr-item-edit-input no-top">
-        <el-color-picker size="mini" :show-alpha="true"
-                         v-model="activePage.commonStyle.backgroundColor"></el-color-picker>
+        <el-color-picker
+          v-model="activePage.commonStyle.backgroundColor"
+          size="mini"
+          :show-alpha="true"
+        />
       </div>
     </div>
     <div class="attr-item-edit-wrapper">
-      <p class="attr-item-title">背景图片：</p>
+      <p class="attr-item-title">
+        背景图片：
+      </p>
       <div class="attr-item-edit-input">
         <imageSelect :url.sync="activePage.commonStyle.backgroundImage" />
       </div>
     </div>
 
     <div v-if="pageMode !== 'h5'">
-      <p class="page-title fontBold">页面尺寸</p>
+      <p class="page-title fontBold">
+        页面尺寸
+      </p>
       <div class="attr-item-edit-wrapper">
-        <p class="attr-item-title">尺寸：</p>
+        <p class="attr-item-title">
+          尺寸：
+        </p>
         <div class="col-2 attr-item-edit-input">
-          <el-input-number size="mini"
-                           v-model="projectData.width"
-                           controls-position="right" :min="0"/>
-          <div class="attr-item-edit-input-des">宽度</div>
+          <el-input-number
+            v-model="projectData.width"
+            size="mini"
+            controls-position="right"
+            :min="0"
+          />
+          <div class="attr-item-edit-input-des">
+            宽度
+          </div>
         </div>
         <div class="col-2 attr-item-edit-input">
-          <el-input-number size="mini"
-                           v-model="projectData.height"
-                           controls-position="right" :min="0"/>
-          <div class="attr-item-edit-input-des">高度</div>
+          <el-input-number
+            v-model="projectData.height"
+            size="mini"
+            controls-position="right"
+            :min="0"
+          />
+          <div class="attr-item-edit-input-des">
+            高度
+          </div>
         </div>
       </div>
     </div>

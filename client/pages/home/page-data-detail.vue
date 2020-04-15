@@ -1,6 +1,6 @@
 <template>
   <div class="page-data-detail">
-    <div></div>
+    <div />
     <notFundData />
   </div>
 </template>

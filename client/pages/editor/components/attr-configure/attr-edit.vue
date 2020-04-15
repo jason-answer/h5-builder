@@ -1,15 +1,17 @@
 <template>
   <el-scrollbar class="components-attr-edit">
-    <div class="attr-edit-inner" v-if="activeElementUUID">
+    <div v-if="activeElementUUID" class="attr-edit-inner">
       <div class="props-attr-style">
-        <propsAttr></propsAttr>
+        <propsAttr />
       </div>
       <div class="common-attr-style">
-        <baseAttr></baseAttr>
+        <baseAttr />
       </div>
     </div>
     <div v-else>
-      <p class="gray paddingT30 text-center">请在画板上选择需要编辑得元素</p>
+      <p class="gray paddingT30 text-center">
+        请在画板上选择需要编辑得元素
+      </p>
     </div>
   </el-scrollbar>
 </template>
@@ -20,11 +22,11 @@
 	import {mapState, mapGetters} from 'vuex'
 
 	export default {
-		props: {},
 		components: {
 			baseAttr,
 			propsAttr
 		},
+		props: {},
 		computed: {
 			...mapState({
 				projectData: state => state.editor.projectData,

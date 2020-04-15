@@ -41,7 +41,7 @@ export default {
 						formdata[key] = item.value;
 					})
 				})
-				console.log(formdata)
+				// console.log(formdata)
 				resolve()
 			})
 		}

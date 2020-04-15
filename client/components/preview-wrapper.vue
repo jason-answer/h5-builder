@@ -1,40 +1,39 @@
 <template>
   <div class="components-preview">
-    <div class="setting-bg"></div>
+    <div class="setting-bg" />
     <div class="left-panel">
       <!-- <div class="iframe-wrapper" :style="{width: $config.canvasH5Width + 'px', height: $config.canvasH5Height + 'px'}">
        
       </div> -->
       <div class="marvel-device iphone-x">
         <div class="notch">
-          <div class="camera"></div>
-          <div class="speaker"></div>
+          <div class="camera" />
+          <div class="speaker" />
         </div>
-        <div class="top-bar"></div>
-        <div class="sleep"></div>
-        <div class="bottom-bar"></div>
-        <div class="volume"></div>
+        <div class="top-bar" />
+        <div class="sleep" />
+        <div class="bottom-bar" />
+        <div class="volume" />
         <div class="overflow">
-          <div class="shadow shadow--tr"></div>
-          <div class="shadow shadow--tl"></div>
-          <div class="shadow shadow--br"></div>
-          <div class="shadow shadow--bl"></div>
+          <div class="shadow shadow--tr" />
+          <div class="shadow shadow--tl" />
+          <div class="shadow shadow--br" />
+          <div class="shadow shadow--bl" />
         </div>
-        <div class="inner-shadow"></div>
+        <div class="inner-shadow" />
         <div class="screen">
-          <iframe :src="$config.baseURL + '/page/view/' + pageId" frameborder="0" style="background-color:transparent;width: 100%; height: 100%; margin-top: 44px;"></iframe>
+          <iframe :src="$config.baseURL + '/page/view/' + pageId" frameborder="0" style="background-color:transparent;width: 100%; height: 100%; margin-top: 44px;" />
           <div class="x-bottom-bar">
-            <div class="strip"></div>
+            <div class="strip" />
           </div>
         </div>
-
       </div>
     </div>
     <div class="right-panel">
-      <slot></slot>
+      <slot />
     </div>
     <span class="cloase-btn" @click="closePreview">
-      <i class="el-icon-close"></i>
+      <i class="el-icon-close" />
     </span>
   </div>
 </template>
@@ -46,19 +45,15 @@ export default {
     pageId: String
   },
   data() {
-    return {
-
-    }
+    return {};
   },
-  created() {
-
-  },
+  created() {},
   methods: {
     closePreview() {
-      this.$emit('closePreview', false);
+      this.$emit("closePreview", false);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
