@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { Form, FormItem, Input } from "element-ui";
+import { Form, FormItem, Input } from 'element-ui';
 
 export default {
   components: {
@@ -64,52 +64,52 @@ export default {
   },
   data() {
     var validatePass = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("密码不能为空"));
+      if (value === '') {
+        callback(new Error('密码不能为空'));
       } else {
-        if (this.formData.checkPassword !== "") {
-          this.$refs.loginForm.validateField("checkPass");
+        if (this.formData.checkPassword !== '') {
+          this.$refs.loginForm.validateField('checkPass');
         }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请再次输入密码"));
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
       } else if (value !== this.formData.password) {
-        callback(new Error("两次输入密码不一致!"));
+        callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
       }
     };
     return {
       loading: false,
-      type: "login",
-      inputType: "password",
+      type: 'login',
+      inputType: 'password',
       formData: {
-        email: "",
-        username: "",
-        password: "",
-        checkPassword: ""
+        email: '',
+        username: '',
+        password: '',
+        checkPassword: ''
       },
       formRules: {
         username: [
-          { required: true, message: "用户名不能为空", trigger: "blur" }
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
-        password: [{ required: true, message: "密码不能为空", trigger: "blur" }]
+        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
       },
       formRulesRegister: {
         username: [
-          { required: true, message: "用户名不能为空", trigger: "blur" }
+          { required: true, message: '用户名不能为空', trigger: 'blur' }
         ],
-        password: [{ validator: validatePass, trigger: "blur" }],
-        checkPassword: [{ validator: validatePass2, trigger: "blur" }],
+        password: [{ validator: validatePass, trigger: 'blur' }],
+        checkPassword: [{ validator: validatePass2, trigger: 'blur' }],
         email: [
-          { required: true, message: "请输入邮箱地址", trigger: "blur" },
+          { required: true, message: '请输入邮箱地址', trigger: 'blur' },
           {
-            type: "email",
-            message: "请输入正确的邮箱地址",
-            trigger: ["blur", "change"]
+            type: 'email',
+            message: '请输入正确的邮箱地址',
+            trigger: ['blur', 'change']
           }
         ]
       }
@@ -123,20 +123,20 @@ export default {
 			 登陆
 			 */
     doLogin() {
-      if (this.type === "注册") {
+      if (this.type === '注册') {
         this.doRegister();
         return;
       }
       // 验证成功
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$axios.post("/auth/login", this.formData).then(res => {
-            this.$store.dispatch("updateUserToken", res.body.token);
-            this.$router.push("/");
+          this.$axios.post('/auth/login', this.formData).then(res => {
+            this.$store.dispatch('updateUserToken', res.body.token);
+            this.$router.push('/');
             this.getUserInfo();
           });
         } else {
-          this.$message.error("请正确填下表单!");
+          this.$message.error('请正确填下表单!');
           return false;
         }
       });
@@ -148,39 +148,39 @@ export default {
       // 验证成功
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$axios.post("/auth/register", this.formData).then(res => {
-            this.$store.dispatch("updateUserToken", res.body.token);
-            this.$router.push("/");
+          this.$axios.post('/auth/register', this.formData).then(res => {
+            this.$store.dispatch('updateUserToken', res.body.token);
+            this.$router.push('/');
             this.getUserInfo();
           });
         } else {
-          this.$message.error("请正确填下表单!");
+          this.$message.error('请正确填下表单!');
           return false;
         }
       });
     },
     mousedownPassword() {
-      this.inputType = "text";
+      this.inputType = 'text';
     },
     mousedownText() {
-      this.inputType = "password";
+      this.inputType = 'password';
     },
     mouseup() {
-      this.inputType = "password";
+      this.inputType = 'password';
     },
     /**
      * 获取用户信息
      */
     getUserInfo() {
-      this.$axios.get("/user/info").then(res => {
-        this.$store.dispatch("updateUserInfo", res.body);
+      this.$axios.get('/user/info').then(res => {
+        this.$store.dispatch('updateUserInfo', res.body);
       });
     },
     /**
      * 切换登录注册
      */
     switchLoginType() {
-      this.type = this.type === "登录" ? "注册" : "登录";
+      this.type = this.type === '登录' ? '注册' : '登录';
     }
   }
 };

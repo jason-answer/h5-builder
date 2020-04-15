@@ -53,24 +53,24 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters } from 'vuex';
 
 export default {
-  name: "event-edit",
+  name: 'event-edit',
   data() {
     return {
       eventTypeList: [
         {
-          label: "链接跳转",
-          value: "link"
+          label: '链接跳转',
+          value: 'link'
         },
         {
-          label: "分享",
-          value: "share"
+          label: '分享',
+          value: 'share'
         },
         {
-          label: "表单提交",
-          value: "submitForm"
+          label: '表单提交',
+          value: 'submitForm'
         }
       ]
     };
@@ -82,10 +82,10 @@ export default {
       activeElementUUID: state => state.editor.activeElementUUID
     }),
     ...mapGetters([
-      "currentPageIndex",
-      "activeElementIndex",
-      "activeElement",
-      "activePage"
+      'currentPageIndex',
+      'activeElementIndex',
+      'activeElement',
+      'activePage'
     ])
   },
   methods: {
@@ -94,14 +94,14 @@ export default {
      * @param type 事件名称
      */
     addEvent(type) {
-      this.$store.dispatch("addElementEvent", type);
+      this.$store.dispatch('addElementEvent', type);
     },
     /**
      * 删除事件
      * @param index
      */
     deleteEvent(index) {
-      this.$store.dispatch("deleteElementEvent", index);
+      this.$store.dispatch('deleteElementEvent', index);
     }
   }
 };

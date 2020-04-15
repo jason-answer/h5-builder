@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema
-const ObjectId = mongoose.Types.ObjectId
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 // Schema
 const schema = new Schema({
@@ -31,7 +31,7 @@ const schema = new Schema({
   isPublish: { type: Boolean, default: false }, //  发布状态
   isTemplate: { type: Boolean, default: false },
   members: [mongoose.Schema.Types.ObjectId] // 共享人员列表
-}, { timestamps: { createdAt: 'created', updatedAt: 'updated' } })
+}, { timestamps: { createdAt: 'created', updatedAt: 'updated' } });
 
 // Model
 const model = mongoose.model('page', schema, 'page');

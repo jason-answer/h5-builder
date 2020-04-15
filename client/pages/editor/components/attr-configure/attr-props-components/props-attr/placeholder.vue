@@ -8,13 +8,13 @@
 
 <script>
 export default {
-  name: "attr-qk-placeholder",
+  name: 'attr-qk-placeholder',
   props: {
     placeholder: String
   },
   data() {
     return {
-      tempText: ""
+      tempText: ''
     };
   },
   watch: {
@@ -22,7 +22,7 @@ export default {
       this.tempText = val;
     },
     tempText() {
-      this.$emit("update:placeholder", this.tempText);
+      this.$emit('update:placeholder', this.tempText);
     }
   },
   mounted() {

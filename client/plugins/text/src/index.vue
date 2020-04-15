@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  name: "QkText", // 这个名字很重要，它就是未来的标签名<qk-text></qk-text>
+  name: 'QkText', // 这个名字很重要，它就是未来的标签名<qk-text></qk-text>
   props: {
     text: {
       type: String,
-      default: "这是一段文字"
+      default: '这是一段文字'
     }
   },
   data() {

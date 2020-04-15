@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: "QkRectangleBorder" // 这个名字很重要，它就是未来的标签名
+  name: 'QkRectangleBorder' // 这个名字很重要，它就是未来的标签名
 };
 </script>
 

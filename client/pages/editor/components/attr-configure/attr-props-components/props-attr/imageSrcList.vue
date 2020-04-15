@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import imageSelect from "@client/components/image-select";
+import imageSelect from '@client/components/image-select';
 
 export default {
-  name: "attr-qk-imageSrcList",
+  name: 'attr-qk-imageSrcList',
   components: {
     imageSelect
   },
@@ -63,7 +63,7 @@ export default {
       return list;
     },
     change() {
-      this.$emit("update:imageSrcList", this.getResultImageSrcList());
+      this.$emit('update:imageSrcList', this.getResultImageSrcList());
     },
     add(index) {
       let img = this.tempValue[index];

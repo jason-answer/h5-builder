@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  name: "QkTextarea",
+  name: 'QkTextarea',
   props: {
     placeholder: {
       type: String,
-      default: "请输入"
+      default: '请输入'
     },
     value: {
       require: false
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      tempValue: ""
+      tempValue: ''
     };
   },
   watch: {
@@ -27,7 +27,7 @@ export default {
       this.tempValue = val;
     },
     tempValue() {
-      this.$emit("input", this.temp);
+      this.$emit('input', this.temp);
     }
   },
   created() {

@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  name: "QkIframe", // 这个名字很重要，它就是未来的标签名
+  name: 'QkIframe', // 这个名字很重要，它就是未来的标签名
   props: {
     url: {
       type: String,
-      default: "http://m.baidu.com/"
+      default: 'http://m.baidu.com/'
     }
   },
   data() {

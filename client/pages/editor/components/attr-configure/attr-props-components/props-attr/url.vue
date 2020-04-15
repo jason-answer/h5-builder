@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "attr-qk-url",
+  name: 'attr-qk-url',
   props: {
     url: String
   },
   data() {
     return {
-      tempValue: ""
+      tempValue: ''
     };
   },
   watch: {
@@ -20,7 +20,7 @@ export default {
       this.tempValue = val;
     },
     tempValue() {
-      this.$emit("update:url", this.tempValue);
+      this.$emit('update:url', this.tempValue);
     }
   },
   mounted() {

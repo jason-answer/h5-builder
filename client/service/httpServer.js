@@ -1,33 +1,32 @@
-import axios from 'axios'
-import store from '@/store/index'
-import $config from "@/config/index";
+import axios from 'axios';
+import store from '@/store/index';
+import $config from '@/config/index';
 import QS from 'qs';
-
 
 // 线上环境配置axios.defaults.baseURL，生产环境则用proxy代理
 if (process.env.VUE_APP_ENV_NAME !== 'development') {
   axios.defaults.baseURL = $config.baseURL;
 }
-axios.defaults.headers['Content-Type'] = 'application/json;charse=UTF-8'
+axios.defaults.headers['Content-Type'] = 'application/json;charse=UTF-8';
 axios.defaults.timeout = 30000; // 超时时间
 
 //请求拦截器
 axios.interceptors.request.use(config => {
   config.headers.Authorization = store.getters.authorization;
-  return config
+  return config;
 }, error => {
-  return Promise.reject(error)
+  return Promise.reject(error);
 });
 //响应拦截器即异常处理
 axios.interceptors.response.use(response => {
   if (response.data.status) {
-    return Promise.resolve(response.data)
+    return Promise.resolve(response.data);
   } else {
     store.dispatch('showMassage', {
       type: 'error',
       message: response.data.message || response.data.msg || response.data.errMsg
     });
-    return Promise.reject(response)
+    return Promise.reject(response);
   }
 }, err => {
   if (err && err.response) {
@@ -67,22 +66,22 @@ axios.interceptors.response.use(response => {
         err.message = '网络超时';
         break;
       default:
-        err.message = `连接错误${err.response.msg}`
+        err.message = `连接错误${err.response.msg}`;
     }
   } else {
-    err.message = "连接到服务器失败"
+    err.message = '连接到服务器失败';
   }
   store.dispatch('showMassage', {
     type: 'error',
     data: err.message || err.response.msg
   });
-  return Promise.reject(err.response)
+  return Promise.reject(err.response);
 });
 /**
  * 下载文件
  */
 let downloadFile = (url) => {
-  window.open(url)
+  window.open(url);
 };
 export default {
   //get请求
@@ -95,7 +94,7 @@ export default {
       },
       responseType: responseType,
       params: param || {}
-    })
+    });
   },
   //post请求
   post(url, param, header) {
@@ -107,7 +106,7 @@ export default {
         'Content-Type': 'application/json;charse=UTF-8'
       },
       data: param || {}
-    })
+    });
   },
   postFormData(url, params, header) {
     return axios({
@@ -118,7 +117,7 @@ export default {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       data: QS.stringify(params) || {}
-    })
+    });
   },
   //post请求
   put(url, param, header) {
@@ -130,7 +129,7 @@ export default {
         'Content-Type': 'application/json;charse=UTF-8'
       },
       data: param || {}
-    })
+    });
   },
   // delete
   delete(url, param, header) {
@@ -141,13 +140,13 @@ export default {
         ...(header || {})
       },
       params: param || {}
-    })
+    });
   },
   // 此方法非promise 导出文件
   getFile(url, params) {
     let tempParams = {
       ...(params || {})
-    }
+    };
     // 拼接下载地址
     let list = [];
     for (let key in tempParams) {
@@ -157,4 +156,4 @@ export default {
     url = encodeURI(url);
     downloadFile(url);
   }
-}
+};

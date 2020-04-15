@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import UploadPsd from "@client/components/upload-psd";
+import { mapGetters, mapActions } from 'vuex';
+import UploadPsd from '@client/components/upload-psd';
 export default {
   components: {
     UploadPsd
@@ -70,59 +70,59 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["canUndo", "canRedo"])
+    ...mapGetters(['canUndo', 'canRedo'])
   },
   created() {
     this.scaleValue = this.scale;
   },
   methods: {
-    ...mapActions(["editorUndo", "editorRedo"]),
+    ...mapActions(['editorUndo', 'editorRedo']),
     /**
      * 更新画板大小
      */
     updateScale(type, value) {
-      if (type === "plus") {
+      if (type === 'plus') {
         this.scaleValue =
           this.scaleValue + (value || 0.1) > 2
             ? 2
             : this.scaleValue + (value || 0.1);
-      } else if (type === "reduce") {
+      } else if (type === 'reduce') {
         this.scaleValue =
           this.scaleValue - (value || 0.1) > 0.5
             ? this.scaleValue - (value || 0.1)
             : 0.5;
-      } else if (type === "reset") {
+      } else if (type === 'reset') {
         this.scaleValue = value || 1;
       }
 
-      this.$emit("update:scale", this.scaleValue);
+      this.$emit('update:scale', this.scaleValue);
     },
     /**
      * 获取psd数据
      */
     uploadSuccessPsd(dataList) {
-      this.$emit("import-psd-data", dataList);
+      this.$emit('import-psd-data', dataList);
     },
     /**
      * 点击保存按钮
      */
     save() {
-      this.$emit("save");
+      this.$emit('save');
     },
     /**
      * 显示预览
      */
     showPreview() {
-      this.$emit("showPreview");
+      this.$emit('showPreview');
     },
     /**
      * 发布
      */
     publishFn() {
-      this.$emit("publish");
+      this.$emit('publish');
     },
     cancelFn() {
-      this.$emit("cancel");
+      this.$emit('cancel');
     }
   }
 };

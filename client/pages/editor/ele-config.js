@@ -1,4 +1,4 @@
-import $config from '@client/config'
+import $config from '@client/config';
 
 export default [
   {
@@ -34,7 +34,7 @@ export default [
           height: 40,
           paddingTop: 10,
           paddingBottom: 10,
-          borderColor: "#999999",
+          borderColor: '#999999',
           borderStyle: 'solid',
           borderWidth: 1,
           borderRadius: 4
@@ -48,7 +48,7 @@ export default [
         defaultStyle: {
           width: 120,
           height: 100,
-          borderColor: "#999999",
+          borderColor: '#999999',
           borderStyle: 'solid',
           borderWidth: 2
         }
@@ -102,7 +102,7 @@ export default [
           paddingBottom: 2,
           paddingLeft: 10,
           paddingRight: 10,
-          borderColor: "#999999",
+          borderColor: '#999999',
           borderStyle: 'solid',
           borderWidth: 1,
           borderRadius: 4
@@ -120,7 +120,7 @@ export default [
           paddingBottom: 6,
           paddingLeft: 10,
           paddingRight: 10,
-          borderColor: "#999999",
+          borderColor: '#999999',
           borderStyle: 'solid',
           borderWidth: 1,
           borderRadius: 4
@@ -177,4 +177,4 @@ export default [
     title: '业务组件',
     components: []
   }
-]
+];

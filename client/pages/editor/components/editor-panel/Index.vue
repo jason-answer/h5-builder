@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import { _qk_register_components_object } from "@client/plugins/index";
-import editShape from "@/components/edit-shape";
-import editorProjectConfig from "@client/pages/editor/DataModel";
-import { mapState, mapGetters } from "vuex";
-import html2canvas from "html2canvas";
+import { _qk_register_components_object } from '@client/plugins/index';
+import editShape from '@/components/edit-shape';
+import editorProjectConfig from '@client/pages/editor/DataModel';
+import { mapState, mapGetters } from 'vuex';
+import html2canvas from 'html2canvas';
 
 // todo 测试用
 window._qk_register_components_object = _qk_register_components_object;
@@ -50,49 +50,49 @@ export default {
       getCommonStyle: editorProjectConfig.getCommonStyle,
       menuOptions: [
         {
-          title: "复制",
-          icon: "iconfont iconfuzhi",
-          value: "copy"
+          title: '复制',
+          icon: 'iconfont iconfuzhi',
+          value: 'copy'
         },
         {
-          title: "删除",
-          icon: "iconfont iconshanchu",
-          value: "delete"
+          title: '删除',
+          icon: 'iconfont iconshanchu',
+          value: 'delete'
         },
         {
-          title: "字体放大",
-          icon: "iconfont iconzitifangda",
-          value: "fontA+"
+          title: '字体放大',
+          icon: 'iconfont iconzitifangda',
+          value: 'fontA+'
         },
         {
-          title: "字体缩小",
-          icon: "iconfont iconzitisuoxiao",
-          value: "fontA-"
+          title: '字体缩小',
+          icon: 'iconfont iconzitisuoxiao',
+          value: 'fontA-'
         },
         {
-          title: "字体加粗",
-          icon: "iconfont iconzitijiacu",
-          value: "fontB"
+          title: '字体加粗',
+          icon: 'iconfont iconzitijiacu',
+          value: 'fontB'
         },
         {
-          title: "图层上移",
-          icon: "iconfont iconziyuan1",
-          value: "layerUp"
+          title: '图层上移',
+          icon: 'iconfont iconziyuan1',
+          value: 'layerUp'
         },
         {
-          title: "图层下移",
-          icon: "iconfont iconxiayiyiceng",
-          value: "layerDown"
+          title: '图层下移',
+          icon: 'iconfont iconxiayiyiceng',
+          value: 'layerDown'
         },
         {
-          title: "图层置顶",
-          icon: "iconfont iconcontrol-top",
-          value: "layerTop"
+          title: '图层置顶',
+          icon: 'iconfont iconcontrol-top',
+          value: 'layerTop'
         },
         {
-          title: "图层置底",
-          icon: "iconfont iconcontrol-bottom",
-          value: "layerBottom"
+          title: '图层置底',
+          icon: 'iconfont iconcontrol-bottom',
+          value: 'layerBottom'
         }
       ]
     };
@@ -104,10 +104,10 @@ export default {
       activeElementUUID: state => state.editor.activeElementUUID
     }),
     ...mapGetters([
-      "currentPageIndex",
-      "activeElementIndex",
-      "activeElement",
-      "activePage"
+      'currentPageIndex',
+      'activeElementIndex',
+      'activeElement',
+      'activePage'
     ])
   },
   mounted() {},
@@ -117,7 +117,7 @@ export default {
      * @param uuid
      */
     handleElementClick(uuid) {
-      this.$store.dispatch("setActiveElementUUID", uuid);
+      this.$store.dispatch('setActiveElementUUID', uuid);
     },
     /**
      * 移动改变元素大小定位
@@ -126,7 +126,7 @@ export default {
      */
     handleElementResize(pos) {
       if (!pos) {
-        this.$store.dispatch("addHistoryCache");
+        this.$store.dispatch('addHistoryCache');
         return;
       }
       this.projectData.pages[this.currentPageIndex].elements[
@@ -141,17 +141,17 @@ export default {
     },
     handleClickCanvas(e) {
       if (
-        !e.target.classList.contains("element-on-edit-pane") &&
-        !e.target.classList.contains("menu-item-on-edit-panel")
+        !e.target.classList.contains('element-on-edit-pane') &&
+        !e.target.classList.contains('menu-item-on-edit-panel')
       ) {
-        this.$store.dispatch("setActiveElementUUID", "");
+        this.$store.dispatch('setActiveElementUUID', '');
       }
     },
     /**
      * 对元素进行操作命令
      */
     handleElementCommand(command) {
-      this.$store.dispatch("elementCommand", command);
+      this.$store.dispatch('elementCommand', command);
     },
     /**
      * 监听键盘事件
@@ -165,14 +165,14 @@ export default {
      * 提供截屏作为项目主图
      */
     screenshots() {
-      const el = document.querySelector("#canvas-panel");
+      const el = document.querySelector('#canvas-panel');
       html2canvas(el, {
         width: 375,
         height: 667,
-        proxy: "/htmltocanvas/corsproxy" // 设置跨域接口
+        proxy: '/htmltocanvas/corsproxy' // 设置跨域接口
       }).then(canvas => {
-        let url = canvas.toDataURL("image/jpeg");
-        this.$store.commit("updateCoverImage", url);
+        let url = canvas.toDataURL('image/jpeg');
+        this.$store.commit('updateCoverImage', url);
       });
     }
   }

@@ -5,7 +5,7 @@ export default {
   data() {
     return {
 
-    }
+    };
   },
   methods: {
     /**
@@ -17,7 +17,7 @@ export default {
       this._linkToLogout();
     },
     _linkToLogout() {
-      this.$router.push({ path: '/login' })
+      this.$router.push({ path: '/login' });
     }
   }
-}
+};

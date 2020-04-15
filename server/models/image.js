@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema
-const ObjectId = mongoose.Types.ObjectId
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 // Schema
 const schema = new Schema({
@@ -10,7 +10,7 @@ const schema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   }
-})
+});
 
 // Model
 const model = mongoose.model('image', schema, 'image');

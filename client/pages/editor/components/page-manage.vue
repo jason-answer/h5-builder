@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
   computed: {
@@ -70,16 +70,16 @@ export default {
      * @param item
      */
     changeActivePage(item) {
-      this.$store.dispatch("setActivePageUUID", item.uuid);
+      this.$store.dispatch('setActivePageUUID', item.uuid);
     },
     copyPage(item) {
-      this.$store.dispatch("copyPage", item.uuid);
+      this.$store.dispatch('copyPage', item.uuid);
     },
     addPage(item) {
-      this.$store.dispatch("addPage", item ? item.uuid : "");
+      this.$store.dispatch('addPage', item ? item.uuid : '');
     },
     deletePage(item) {
-      this.$store.dispatch("deletePage", item.uuid);
+      this.$store.dispatch('deletePage', item.uuid);
     }
   }
 };

@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import runAnimations from "@client/common/js/runAnimations";
-import Bus from "@client/eventBus";
+import runAnimations from '@client/common/js/runAnimations';
+import Bus from '@client/eventBus';
 
 export default {
-  name: "EditShape",
+  name: 'EditShape',
   props: {
     active: {
       type: Boolean,
@@ -28,19 +28,19 @@ export default {
   data() {
     return {
       // l = left, t = top, r = right, b = bottom
-      pointList: ["lt", "rt", "lb", "rb", "l", "r", "t", "b"],
+      pointList: ['lt', 'rt', 'lb', 'rb', 'l', 'r', 't', 'b'],
       // 上下左右 对应的 东南西北
       directionKey: {
-        t: "n",
-        b: "s",
-        l: "w",
-        r: "e"
+        t: 'n',
+        b: 's',
+        l: 'w',
+        r: 'e'
       }
     };
   },
   mounted() {
     this.animatePlaying = false;
-    Bus.$on("RUN_ANIMATIONS", (uuid, animations) => {
+    Bus.$on('RUN_ANIMATIONS', (uuid, animations) => {
       if (uuid !== this.uuid) {
         return;
       }
@@ -86,16 +86,16 @@ export default {
         }
       }
       const style = {
-        marginLeft: hasL || hasR ? "-5px" : 0,
-        marginTop: hasT || hasB ? "-5px" : 0,
+        marginLeft: hasL || hasR ? '-5px' : 0,
+        marginTop: hasT || hasB ? '-5px' : 0,
         left: `${newLeft}px`,
         top: `${newTop}px`,
         cursor:
           point
-            .split("")
+            .split('')
             .reverse()
             .map(m => this.directionKey[m])
-            .join("") + "-resize"
+            .join('') + '-resize'
       };
       return style;
     },
@@ -112,14 +112,14 @@ export default {
      */
     handleMouseDownOnElement(e) {
       // 抛出事件让父组件设置当前元素选中状态
-      this.$emit("handleElementClick");
+      this.$emit('handleElementClick');
       const pos = { ...this.defaultStyle };
       let startY = e.clientY;
       let startX = e.clientX;
       let startTop = pos.top;
       let startLeft = pos.left;
-      let firstTime = "",
-        lastTime = "";
+      let firstTime = '';
+      let lastTime = '';
       firstTime = new Date().getTime();
       let move = moveEvent => {
         // !#zh 移动的时候，不需要向后代元素传递事件，只需要单纯的移动就OK
@@ -130,18 +130,18 @@ export default {
         let currY = moveEvent.clientY;
         pos.top = currY - startY + startTop;
         pos.left = currX - startX + startLeft;
-        this.$emit("resize", pos);
+        this.$emit('resize', pos);
       };
       let up = () => {
         lastTime = new Date().getTime();
         if (lastTime - firstTime > 200) {
-          this.$emit("resize");
+          this.$emit('resize');
         }
-        document.removeEventListener("mousemove", move, true);
-        document.removeEventListener("mouseup", up, true);
+        document.removeEventListener('mousemove', move, true);
+        document.removeEventListener('mouseup', up, true);
       };
-      document.addEventListener("mousemove", move, true);
-      document.addEventListener("mouseup", up, true);
+      document.addEventListener('mousemove', move, true);
+      document.addEventListener('mouseup', up, true);
       return true;
     },
     /**
@@ -152,7 +152,7 @@ export default {
     handleMouseDownOnPoint(point) {
       let downEvent = event;
       // 抛出事件让父组件设置当前元素选中状态
-      this.$emit("handleElementClick");
+      this.$emit('handleElementClick');
       downEvent.stopPropagation();
       downEvent.preventDefault(); // Let's stop this event.
       const pos = { ...this.defaultStyle };
@@ -177,15 +177,15 @@ export default {
         pos.width = newWidth > 0 ? newWidth : 0;
         pos.left = +left + (hasL ? disX : 0);
         pos.top = +top + (hasT ? disY : 0);
-        this.$emit("resize", pos);
+        this.$emit('resize', pos);
       };
       let up = () => {
-        this.$emit("resize");
-        document.removeEventListener("mousemove", move);
-        document.removeEventListener("mouseup", up);
+        this.$emit('resize');
+        document.removeEventListener('mousemove', move);
+        document.removeEventListener('mouseup', up);
       };
-      document.addEventListener("mousemove", move);
-      document.addEventListener("mouseup", up);
+      document.addEventListener('mousemove', move);
+      document.addEventListener('mouseup', up);
     }
   }
 };

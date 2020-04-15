@@ -5,7 +5,7 @@ const options = {
   autoReconnect: true,
   useNewUrlParser: true,
   useUnifiedTopology: true
-}
+};
 
 // username 数据库用户名
 // password 数据库密码
@@ -15,13 +15,13 @@ const options = {
 const url = 'mongodb://admin:admin@localhost:27017/h5_templateDB';
 module.exports = {
   connect: () => {
-    mongoose.connect(url, options)
-    let db = mongoose.connection
+    mongoose.connect(url, options);
+    let db = mongoose.connection;
     // eslint-disable-next-line no-console
     db.on('error', console.error.bind(console, '连接错误:'));
     db.once('open', () => {
       // eslint-disable-next-line no-console
       console.log('mongodb connect suucess');
-    })
+    });
   }
-}
+};

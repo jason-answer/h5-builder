@@ -1,8 +1,7 @@
 /**
  * 公共配置文件
  */
-import $config from '../../config'
-
+import $config from '../../config';
 
 const configDict = {
   development: {
@@ -11,11 +10,11 @@ const configDict = {
   production: {
     baseURL: $config.baseURL
   }
-}
+};
 
-const currentConfigKey = process.env.NODE_ENV
-const isDev = process.env.NODE_ENV === 'development'
-const isTest = process.env.NODE_ENV === 'development'
+const currentConfigKey = process.env.NODE_ENV;
+const isDev = process.env.NODE_ENV === 'development';
+const isTest = process.env.NODE_ENV === 'development';
 
 const configObj = {
   isDevelop: (isDev || isTest),
@@ -23,6 +22,6 @@ const configObj = {
   // h5模式宽高
   canvasH5Width: 375,
   canvasH5Height: 644
-}
+};
 
-export default configObj
+export default configObj;

@@ -1,12 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
 // 各个模块
-import editor from './modules/editor'
-import user from './modules/user'
+import editor from './modules/editor';
+import user from './modules/user';
 
-
-import { Message } from 'element-ui'
+import { Message } from 'element-ui';
 /**
  * 全局状态管理
  */
@@ -25,7 +24,7 @@ const actions = {
     Message({
       type: msg.type,
       message: msg.message || msg.data
-    })
+    });
   }
 };
 const mutations = {};

@@ -16,7 +16,6 @@ class File {
   uploadToOss() {
     // todo 待完善
   }
-
 }
 
-module.exports = new File()
+module.exports = new File();

@@ -285,9 +285,9 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import { ceil, subtract, divide, throttle } from "lodash";
-import imageSelect from "@client/components/image-select";
+import { mapState, mapGetters } from 'vuex';
+import { ceil, subtract, divide, throttle } from 'lodash';
+import imageSelect from '@client/components/image-select';
 
 export default {
   components: {
@@ -295,56 +295,56 @@ export default {
   },
   data() {
     return {
-      activeNames: ["1"],
+      activeNames: ['1'],
       alignTypeList: [
         {
-          title: "左对齐",
-          icon: "iconfont iconzuoduiqi",
-          type: "l"
+          title: '左对齐',
+          icon: 'iconfont iconzuoduiqi',
+          type: 'l'
         },
         {
-          title: "上对齐",
-          icon: "iconfont iconshangduiqi",
-          type: "t"
+          title: '上对齐',
+          icon: 'iconfont iconshangduiqi',
+          type: 't'
         },
         {
-          title: "右对齐",
-          icon: "iconfont iconyouduiqi",
-          type: "r"
+          title: '右对齐',
+          icon: 'iconfont iconyouduiqi',
+          type: 'r'
         },
         {
-          title: "下对齐",
-          icon: "iconfont iconxiaduiqi",
-          type: "b"
+          title: '下对齐',
+          icon: 'iconfont iconxiaduiqi',
+          type: 'b'
         },
         {
-          title: "垂直居中对齐",
-          icon: "iconfont iconchuizhijuzhongduiqi",
-          type: "tb"
+          title: '垂直居中对齐',
+          icon: 'iconfont iconchuizhijuzhongduiqi',
+          type: 'tb'
         },
         {
-          title: "水平居中对齐",
-          icon: "iconfont iconshuipingjuzhongduiqi",
-          type: "lr"
+          title: '水平居中对齐',
+          icon: 'iconfont iconshuipingjuzhongduiqi',
+          type: 'lr'
         }
       ],
       // 'none', 'solid', 'dashed', 'dotted', 'double'
       borderStyleList: [
         {
-          label: "实线",
-          value: "solid"
+          label: '实线',
+          value: 'solid'
         },
         {
-          label: "虚线",
-          value: "dashed"
+          label: '虚线',
+          value: 'dashed'
         },
         {
-          label: "点状",
-          value: "dotted"
+          label: '点状',
+          value: 'dotted'
         },
         {
-          label: "双线",
-          value: "double"
+          label: '双线',
+          value: 'double'
         }
       ],
       boxShadow: {
@@ -352,7 +352,7 @@ export default {
         v: 0,
         blur: 0,
         spread: 0,
-        color: "#000000"
+        color: '#000000'
       }
     };
   },
@@ -364,10 +364,10 @@ export default {
       activeAttrEditCollapse: state => state.editor.activeAttrEditCollapse
     }),
     ...mapGetters([
-      "currentPageIndex",
-      "activeElementIndex",
-      "activeElement",
-      "activePage"
+      'currentPageIndex',
+      'activeElementIndex',
+      'activeElement',
+      'activePage'
     ])
   },
   watch: {
@@ -378,7 +378,7 @@ export default {
       });
     },
     activeNames() {
-      this.$store.commit("updateActiveAttrEditCollapse", this.activeNames);
+      this.$store.commit('updateActiveAttrEditCollapse', this.activeNames);
     }
   },
   created() {
@@ -394,7 +394,7 @@ export default {
      * */
     addHistory() {
       // console.log('common style change addHistoryCache')
-      this.$store.dispatch("addHistoryCache");
+      this.$store.dispatch('addHistoryCache');
     },
     /**
      *
@@ -407,25 +407,25 @@ export default {
       let eleH = this.activeElement.commonStyle.height;
 
       switch (type) {
-        case "t":
+        case 't':
           this.activeElement.commonStyle.top = 0;
           break;
-        case "b":
+        case 'b':
           this.activeElement.commonStyle.top = subtract(canvasH - eleH);
           break;
-        case "l":
+        case 'l':
           this.activeElement.commonStyle.left = 0;
           break;
-        case "r":
+        case 'r':
           this.activeElement.commonStyle.left = subtract(canvasW - eleW);
           break;
-        case "tb":
+        case 'tb':
           this.activeElement.commonStyle.top = ceil(
             divide(subtract(canvasH - eleH), 2),
             2
           );
           break;
-        case "lr":
+        case 'lr':
           this.activeElement.commonStyle.left = ceil(
             divide(subtract(canvasW - eleW), 2),
             2
@@ -443,19 +443,19 @@ export default {
         v: 0,
         blur: 0,
         spread: 0,
-        color: "#000000"
+        color: '#000000'
       };
-      if (!boxShadow || boxShadow === "none") {
+      if (!boxShadow || boxShadow === 'none') {
         this.boxShadow = boxShadowEditConfig;
         return;
       }
-      let str = boxShadow.split(" ");
+      let str = boxShadow.split(' ');
 
       boxShadowEditConfig = {
-        h: parseInt(str[0].replace("px", "")),
-        v: parseInt(str[1].replace("px", "")),
-        blur: parseInt(str[2].replace("px", "")),
-        spread: parseInt(str[3].replace("px", "")),
+        h: parseInt(str[0].replace('px', '')),
+        v: parseInt(str[1].replace('px', '')),
+        blur: parseInt(str[2].replace('px', '')),
+        spread: parseInt(str[3].replace('px', '')),
         color: str[4]
       };
       this.boxShadow = boxShadowEditConfig;
@@ -476,11 +476,11 @@ export default {
      * @param str
      */
     handleResizeClick(type) {
-      if (type.includes("w")) {
+      if (type.includes('w')) {
         this.activeElement.commonStyle.left = 0;
         this.activeElement.commonStyle.width = this.$config.canvasH5Width;
       }
-      if (type.includes("h")) {
+      if (type.includes('h')) {
         this.activeElement.commonStyle.top = 0;
         this.activeElement.commonStyle.height = this.$config.canvasH5Height;
       }

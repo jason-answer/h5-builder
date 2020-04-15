@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import PageHeader from "@/components/page-header";
+import PageHeader from '@/components/page-header';
 export default {
   components: {
     [PageHeader.name]: PageHeader

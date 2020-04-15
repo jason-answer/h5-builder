@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import editorProjectConfig from "@client/pages/editor/DataModel";
-import componentsTemplate from "../../components/components-template";
-import $config from "@client/config";
-import elementEvents from "@client/mixins/elementEvents";
+import editorProjectConfig from '@client/pages/editor/DataModel';
+import componentsTemplate from '../../components/components-template';
+import $config from '@client/config';
+import elementEvents from '@client/mixins/elementEvents';
 export default {
-  name: "engineH5Long",
+  name: 'engineH5Long',
   components: {
     componentsTemplate
   },
@@ -46,8 +46,8 @@ export default {
      */
     async handleElementClick(eventsData, element) {
       for (let i = 0, len = eventsData.length; i < len; i++) {
-        if (this["_event_" + eventsData[i].type]) {
-          await this["_event_" + eventsData[i].type](
+        if (this['_event_' + eventsData[i].type]) {
+          await this['_event_' + eventsData[i].type](
             eventsData[i],
             element,
             this.pageData

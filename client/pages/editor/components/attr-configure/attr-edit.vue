@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import baseAttr from "./attr-props-components/base-attr";
-import propsAttr from "./attr-props-components/props-attr/index.vue";
-import { mapState, mapGetters } from "vuex";
+import baseAttr from './attr-props-components/base-attr';
+import propsAttr from './attr-props-components/props-attr/index.vue';
+import { mapState, mapGetters } from 'vuex';
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
       activePageUUID: state => state.editor.activePageUUID,
       activeElementUUID: state => state.editor.activeElementUUID
     }),
-    ...mapGetters(["currentPageIndex", "activeElementIndex"])
+    ...mapGetters(['currentPageIndex', 'activeElementIndex'])
   }
 };
 </script>

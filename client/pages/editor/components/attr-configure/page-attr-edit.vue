@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import imageSelect from "@client/components/image-select";
+import { mapState, mapGetters } from 'vuex';
+import imageSelect from '@client/components/image-select';
 export default {
   components: {
     imageSelect
@@ -59,11 +59,11 @@ export default {
       activeElementUUID: state => state.editor.activeElementUUID
     }),
     ...mapGetters([
-      "currentPageIndex",
-      "activeElementIndex",
-      "activeElement",
-      "activePage",
-      "pageMode"
+      'currentPageIndex',
+      'activeElementIndex',
+      'activeElement',
+      'activePage',
+      'pageMode'
     ])
   }
 };

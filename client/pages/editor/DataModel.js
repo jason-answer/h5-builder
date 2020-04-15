@@ -1,6 +1,6 @@
-import { createUUID, deepClone } from '../../../common/uitls'
-import { cloneDeep, merge } from "lodash";
-import $config from '@client/config'
+import { createUUID, deepClone } from '../../../common/uitls';
+import { cloneDeep, merge } from 'lodash';
+import $config from '@client/config';
 // 元素配置信息字段
 let elementConfig = {
   elName: '', // 组件名
@@ -41,7 +41,7 @@ let elementConfig = {
   propsValue: {}, // 属性参数
   value: '', // 绑定值
   valueType: 'String' // 值类型
-}
+};
 // 页面配置信息字段
 let pageConfig = {
   name: '',
@@ -52,7 +52,7 @@ let pageConfig = {
     backgroundSize: 'cover'
   },
   config: {}
-}
+};
 // 项目配置信息字段
 let projectConfig = {
   name: '',
@@ -64,12 +64,11 @@ let projectConfig = {
   width: $config.canvasH5Width,
   height: $config.canvasH5Height,
   pages: []
-}
-
+};
 
 let getElementConfig = function(element, extendStyle = {}) {
-  let elementData = cloneDeep(element)
-  let type = elementData.valueType || 'String' // 默认string类型
+  let elementData = cloneDeep(element);
+  let type = elementData.valueType || 'String'; // 默认string类型
   let dict = {
     'Sting': '',
     'Array': [],
@@ -77,56 +76,56 @@ let getElementConfig = function(element, extendStyle = {}) {
     'Boolean': false,
     'Number': 0
     // 待扩展数据类型
-  }
-  let elementConfigData = cloneDeep(elementConfig)
+  };
+  let elementConfigData = cloneDeep(elementConfig);
   let config = {
     uuid: createUUID(),
     ...elementConfigData,
     elName: elementData.elName,
     propsValue: deepClone(elementData.needProps || {})
-  }
+  };
   // 样式
-  config.commonStyle = merge(config.commonStyle, elementData.defaultStyle)
-  config.commonStyle = merge(config.commonStyle, extendStyle)
+  config.commonStyle = merge(config.commonStyle, elementData.defaultStyle);
+  config.commonStyle = merge(config.commonStyle, extendStyle);
 
   config.value = element.defaultValue || dict[type];
   config.valueType = type;
   config.isForm = !!element.isForm;
   return config;
-}
+};
 let copyElement = function(element, extendStyle = {}) {
-  element = cloneDeep(element)
+  element = cloneDeep(element);
   element.uuid = createUUID();
-  element.commonStyle = merge(element.commonStyle, extendStyle)
+  element.commonStyle = merge(element.commonStyle, extendStyle);
   // 加上一点偏移量，以作区分
-  element.commonStyle.top = element.commonStyle.top + 10
-  element.commonStyle.left = element.commonStyle.left + 10
-  return element
-}
+  element.commonStyle.top = element.commonStyle.top + 10;
+  element.commonStyle.left = element.commonStyle.left + 10;
+  return element;
+};
 
 let getPageConfig = function() {
   return {
     uuid: createUUID(),
     ...cloneDeep(pageConfig)
-  }
-}
+  };
+};
 let copyPage = function(data) {
   let pageData = cloneDeep(data);
   pageData.uuid = createUUID();
   pageData.elements = pageData.elements.map(element => {
-    return copyElement(element)
-  })
+    return copyElement(element);
+  });
   return pageData;
-}
+};
 
 let getProjectConfig = function() {
-  let project = cloneDeep(projectConfig)
-  let onePage = getPageConfig()
+  let project = cloneDeep(projectConfig);
+  let onePage = getPageConfig();
   project.pages.push({
     ...onePage
-  })
-  return { ...project }
-}
+  });
+  return { ...project };
+};
 
 /**
  * 获取元素样式
@@ -134,21 +133,20 @@ let getProjectConfig = function() {
  * @param scalePoint 缩放比例
  */
 let getCommonStyle = function(styleObj, scalingRatio = 1) {
-  let needUnitStr = ['width', 'height', 'top', 'left', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'borderWidth', 'fontSize', 'borderRadius', 'letterSpacing']
-  let style = {}
+  let needUnitStr = ['width', 'height', 'top', 'left', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'borderWidth', 'fontSize', 'borderRadius', 'letterSpacing'];
+  let style = {};
 
   for (let key in styleObj) {
     if (needUnitStr.includes(key)) {
-      style[key] = (styleObj[key] * scalingRatio) + 'px'
+      style[key] = (styleObj[key] * scalingRatio) + 'px';
     } else {
-      style[key] = styleObj[key]
+      style[key] = styleObj[key];
     }
   }
-  style.transform = `rotate(${style.rotate}deg)`
+  style.transform = `rotate(${style.rotate}deg)`;
   style.backgroundImage = style.backgroundImage ? `url(${style.backgroundImage})` : '';
   return style;
-}
-
+};
 
 // function getEleByElName(elName) {
 // 	let list = [];
@@ -168,4 +166,4 @@ export default {
   copyPage,
   copyElement,
   getCommonStyle
-}
+};

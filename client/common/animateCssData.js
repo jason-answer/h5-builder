@@ -90,6 +90,6 @@ let animateCssClassName = [
       { label: '向下滑动收起', value: 'slideOutDown' }
     ]
   }
-]
+];
 
-export default animateCssClassName
+export default animateCssClassName;

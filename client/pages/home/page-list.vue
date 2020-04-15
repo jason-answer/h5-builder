@@ -118,8 +118,8 @@
 </template>
 
 <script>
-import editorProjectConfig from "../editor/DataModel";
-import previewPage from "./components/preview";
+import editorProjectConfig from '../editor/DataModel';
+import previewPage from './components/preview';
 
 export default {
   components: {
@@ -128,24 +128,24 @@ export default {
   data() {
     return {
       loading: false,
-      defaultCoverImage: require("@client/common/images/quark--pagecover-image.png"),
+      defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
       pageList: [],
       myCount: 0,
       shareCount: 0,
-      previewId: "",
+      previewId: '',
       showPreview: false,
       dialogVisible: false,
       addUserloading: false,
       userDataList: [],
       pageModeList: [
         {
-          value: "h5",
-          label: "H5",
+          value: 'h5',
+          label: 'H5',
           disabled: false
         },
         {
-          value: "longPage",
-          label: "长图文H5",
+          value: 'longPage',
+          label: '长图文H5',
           disabled: false
         }
         // {
@@ -159,19 +159,19 @@ export default {
         // }
       ],
       addUserForm: {
-        id: "",
+        id: '',
         userIds: []
       },
       searchParams: {
-        type: "my",
-        pageMode: "h5"
+        type: 'my',
+        pageMode: 'h5'
       }
     };
   },
   created() {
     this.getPageList();
     this.getPagesCount();
-    this.previewId = this.$route.query.previewId || "";
+    this.previewId = this.$route.query.previewId || '';
     if (this.previewId) {
       this.showPreview = true;
     }
@@ -185,7 +185,7 @@ export default {
       this.getPageList();
     },
     getPagesCount() {
-      this.$axios.get("/page/myPages/count", this.searchParams).then(res => {
+      this.$axios.get('/page/myPages/count', this.searchParams).then(res => {
         this.myCount = res.body.my;
         this.shareCount = res.body.share;
       });
@@ -194,7 +194,7 @@ export default {
      * 获取所有页面
      */
     getPageList() {
-      this.$axios.get("/page/myPages", this.searchParams).then(res => {
+      this.$axios.get('/page/myPages', this.searchParams).then(res => {
         // debugger;
         this.pageList = res.body || [];
       });
@@ -206,7 +206,7 @@ export default {
       let newPageData = editorProjectConfig.getProjectConfig();
       this.loading = true;
       this.$axios
-        .post("/page/add", {
+        .post('/page/add', {
           ...newPageData,
           pageMode: this.searchParams.pageMode,
           author: this.$store.state.user.userId
@@ -214,7 +214,7 @@ export default {
         .then(res => {
           this.loading = false;
           if (res.body) {
-            this.$router.push({ path: "editor", query: { id: res.body._id } });
+            this.$router.push({ path: 'editor', query: { id: res.body._id } });
           }
         })
         .catch(() => {
@@ -226,7 +226,7 @@ export default {
      * @param id
      */
     editPage(id) {
-      this.$router.push({ path: "editor", query: { id: id } });
+      this.$router.push({ path: 'editor', query: { id: id } });
     },
     /**
      * 复制页面
@@ -234,11 +234,11 @@ export default {
     copyPage(id) {
       this.loading = true;
       this.$axios
-        .post("/page/copy/" + id)
+        .post('/page/copy/' + id)
         .then(res => {
           this.loading = false;
           if (res.body) {
-            this.$router.push({ path: "editor", query: { id: res.body._id } });
+            this.$router.push({ path: 'editor', query: { id: res.body._id } });
           }
         })
         .catch(() => {
@@ -251,14 +251,14 @@ export default {
      * @param index
      */
     deletePage(id, index) {
-      this.$confirm("此操作将永久删除该页面, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('此操作将永久删除该页面, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       }).then(() => {
         this.loading = true;
         this.$axios
-          .delete("/page/delete/" + id)
+          .delete('/page/delete/' + id)
           .then(() => {
             this.loading = false;
             // 从页面删除
@@ -285,10 +285,10 @@ export default {
      * 搜索成员
      */
     remoteMethod(query) {
-      if (query !== "") {
+      if (query !== '') {
         this.addUserloading = true;
         this.$axios
-          .get("/user/list/search", { keywords: query })
+          .get('/user/list/search', { keywords: query })
           .then(res => {
             this.addUserloading = false;
             this.userDataList = res.body || [];
@@ -306,13 +306,13 @@ export default {
     submitAddUser() {
       this.loading = true;
       this.$axios
-        .post("/page/shareToUser/" + this.addUserForm.id, {
+        .post('/page/shareToUser/' + this.addUserForm.id, {
           userIds: this.addUserForm.userIds
         })
         .then(() => {
           this.loading = false;
           this.dialogVisible = false;
-          this.$message.success("已添加！");
+          this.$message.success('已添加！');
         })
         .catch(() => {
           this.loading = false;
@@ -322,14 +322,14 @@ export default {
      * 从我的参与作品中移出
      * */
     deleteShareUserPage(id, index) {
-      this.$confirm("确认从我的参与作品中删除?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('确认从我的参与作品中删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       }).then(() => {
         this.loading = true;
         this.$axios
-          .post("/page/deleteShareToUser/" + id)
+          .post('/page/deleteShareToUser/' + id)
           .then(() => {
             this.loading = false;
             // 从页面删除
@@ -345,7 +345,7 @@ export default {
      * 跳转到数据统计页面
      */
     showPageData(id) {
-      this.$router.push({ name: "pageDataDetail", query: { id: id } });
+      this.$router.push({ name: 'pageDataDetail', query: { id: id } });
     },
     /**
      * 设为模板
@@ -354,11 +354,11 @@ export default {
     setAsTemplate(id) {
       this.loading = true;
       this.$axios
-        .post("/page/setTemplate/" + id)
+        .post('/page/setTemplate/' + id)
         .then(() => {
           this.loading = false;
-          this.$alert("已添加到我的模板库", "操作提示", {
-            confirmButtonText: "确定"
+          this.$alert('已添加到我的模板库', '操作提示', {
+            confirmButtonText: '确定'
           });
         })
         .catch(() => {
@@ -371,11 +371,11 @@ export default {
     publishPage(id, index) {
       this.loading = true;
       this.$axios
-        .post("/page/publish/" + id)
+        .post('/page/publish/' + id)
         .then(() => {
           this.loading = false;
-          this.$alert("页面发布成功！", "操作提示", {
-            confirmButtonText: "确定"
+          this.$alert('页面发布成功！', '操作提示', {
+            confirmButtonText: '确定'
           });
           this.pageList[index].isPublish = true;
         })

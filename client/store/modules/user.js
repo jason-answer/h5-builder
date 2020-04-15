@@ -15,14 +15,14 @@ const actions = {
 	 * @param commit
 	 */
   updateUserInfo({ commit }, userData) {
-    commit('updateUserInfo', userData)
+    commit('updateUserInfo', userData);
   },
   /**
 	 * 更新token
 	 * @param commit
 	 */
   updateUserToken({ commit }, userData) {
-    commit('updateUserToken', userData)
+    commit('updateUserToken', userData);
   },
   /**
 	 * 退出登录
@@ -56,7 +56,7 @@ const getters = {
 	 * @returns {string}
 	 */
   authorization(state) {
-    return state.token ? ('Bearer ' + state.token) : ''
+    return state.token ? ('Bearer ' + state.token) : '';
   },
   /**
 	 * 用户信息
@@ -64,7 +64,7 @@ const getters = {
 	 * @returns {getters.userData|(function(*))|state.userData|{avatar, level}|*|userData}
 	 */
   userData(state) {
-    return state.userData
+    return state.userData;
   }
 };
 
@@ -73,4 +73,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

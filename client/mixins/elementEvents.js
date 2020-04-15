@@ -11,8 +11,8 @@ export default {
         if (eventData.url) {
           window.location.href = eventData.url;
         }
-        resolve()
-      })
+        resolve();
+      });
     },
     /**
 		 * 分享
@@ -20,9 +20,9 @@ export default {
 		 */
     _event_share() {
       return new Promise((resolve) => {
-        window.alert('分享')
-        resolve()
-      })
+        window.alert('分享');
+        resolve();
+      });
     },
     /**
 		 * 表单提交
@@ -33,17 +33,17 @@ export default {
         // 获取提交接口
         // let apiUrl = eventData.url;
         // 获取页面表单数据
-        let formdata = {}
+        let formdata = {};
         page.pages.forEach(data => {
           data.elements.forEach(item => {
             if (!item.isForm) return;
             let key = item.propsValue.keyName || '';
             formdata[key] = item.value;
-          })
-        })
+          });
+        });
         // console.log(formdata)
-        resolve()
-      })
+        resolve();
+      });
     }
   }
-}
+};

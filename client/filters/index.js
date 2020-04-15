@@ -8,7 +8,7 @@ const filter = {
 	 * @returns {string}
 	 */
   booleanToText: function(value) {
-    return value ? '是' : '否'
+    return value ? '是' : '否';
   },
   /**
 	 * 根据value获取label
@@ -20,9 +20,9 @@ const filter = {
     if (data) {
       return data[label];
     } else {
-      return ''
+      return '';
     }
   }
-}
+};
 
-export default filter
+export default filter;

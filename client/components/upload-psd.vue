@@ -11,13 +11,13 @@ export default {
   methods: {
     beforeUpload(file) {
       if (file.size > 20 * 1024 * 1024) {
-        this.$message.error("psd文件不能超过20M！");
+        this.$message.error('psd文件不能超过20M！');
         return;
       }
-      let temp1 = file.name.split(".");
+      let temp1 = file.name.split('.');
       let temp = temp1[temp1.length - 1];
-      if (!["psd"].includes(temp)) {
-        this.$message.error("请上传psd文件");
+      if (!['psd'].includes(temp)) {
+        this.$message.error('请上传psd文件');
         return false;
       }
       this.uploadPsd(file);
@@ -25,9 +25,9 @@ export default {
     },
     uploadPsd(file) {
       let params = new FormData();
-      params.append("file", file);
-      this.$axios.post("/common/psdPpload", params).then(res => {
-        this.$emit("upload-success", res.body || []);
+      params.append('file', file);
+      this.$axios.post('/common/psdPpload', params).then(res => {
+        this.$emit('upload-success', res.body || []);
       });
     }
   }

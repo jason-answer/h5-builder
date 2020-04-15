@@ -7,11 +7,11 @@
 
 <script>
 export default {
-  name: "QkInput",
+  name: 'QkInput',
   props: {
     placeholder: {
       type: String,
-      default: "请输入"
+      default: '请输入'
     },
     value: {
       require: false

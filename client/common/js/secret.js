@@ -1,6 +1,6 @@
-const CryptoJS = require('crypto-js');  //引用AES源码js
+const CryptoJS = require('crypto-js'); //引用AES源码js
 
-const keyStr = "icklsdufidsakdfa";  //十六位十六进制数作为密钥
+const keyStr = 'icklsdufidsakdfa'; //十六位十六进制数作为密钥
 const ivStr = ''; // 偏移量
 
 function Encrypt(data) {
@@ -46,4 +46,4 @@ function Decrypt(encrypted) {
 export default {
   Decrypt,
   Encrypt
-}
+};

@@ -110,8 +110,8 @@
 </template>
 
 <script>
-import previewWrapper from "@client/components/preview-wrapper";
-import imageCropper from "@client/components/image-cropper";
+import previewWrapper from '@client/components/preview-wrapper';
+import imageCropper from '@client/components/image-cropper';
 
 export default {
   components: {
@@ -133,13 +133,13 @@ export default {
      * 关闭弹窗事件
      */
     closePreview() {
-      this.$emit("closePreview", false);
+      this.$emit('closePreview', false);
     },
     publishFn() {
-      this.$emit("publishFn");
+      this.$emit('publishFn');
     },
     saveFn() {
-      this.$emit("saveFn");
+      this.$emit('saveFn');
     }
   }
 };

@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "attr-qk-text",
+  name: 'attr-qk-text',
   props: {
     text: String
   },
   data() {
     return {
-      tempText: ""
+      tempText: ''
     };
   },
   watch: {
@@ -20,7 +20,7 @@ export default {
       this.tempText = this.text;
     },
     tempText() {
-      this.$emit("update:text", this.tempText);
+      this.$emit('update:text', this.tempText);
     }
   },
   mounted() {

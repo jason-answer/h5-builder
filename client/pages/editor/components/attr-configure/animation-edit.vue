@@ -82,18 +82,18 @@
 </template>
 
 <script>
-import animateCssData from "@client/common/animateCssData";
-import { mapState, mapGetters } from "vuex";
-import Bus from "@client/eventBus";
+import animateCssData from '@client/common/animateCssData';
+import { mapState, mapGetters } from 'vuex';
+import Bus from '@client/eventBus';
 
 export default {
   data() {
     return {
       animateCssDatas: animateCssData,
-      activeName: "进入",
+      activeName: '进入',
       showAnimatePanel: false,
       reSelectAnimateIndex: undefined,
-      hoverPreviewAnimate: ""
+      hoverPreviewAnimate: ''
     };
   },
   computed: {
@@ -102,7 +102,7 @@ export default {
       activePageUUID: state => state.editor.activePageUUID,
       activeElementUUID: state => state.editor.activeElementUUID
     }),
-    ...mapGetters(["currentPageIndex", "activeElementIndex", "activeElement"])
+    ...mapGetters(['currentPageIndex', 'activeElementIndex', 'activeElement'])
   },
   watch: {
     activePageUUID() {
@@ -122,11 +122,11 @@ export default {
     handleChooseAnimate(item) {
       this.showAnimatePanel = false;
       if (this.reSelectAnimateIndex === undefined) {
-        this.$store.dispatch("addElementAnimate", item.value);
+        this.$store.dispatch('addElementAnimate', item.value);
       } else {
         this.activeElement.animations[this.reSelectAnimateIndex].type =
           item.value;
-        this.$store.dispatch("addHistoryCache");
+        this.$store.dispatch('addHistoryCache');
       }
     },
     /**
@@ -134,7 +134,7 @@ export default {
      * @param index
      */
     handleDeleteAnimate(index) {
-      this.$store.dispatch("deleteElementAnimate", index);
+      this.$store.dispatch('deleteElementAnimate', index);
     },
     addAnimate(showAnimatePanel = true) {
       this.showAnimatePanel = showAnimatePanel;
@@ -152,7 +152,7 @@ export default {
         index === undefined
           ? this.activeElement.animations
           : [this.activeElement.animations[index]];
-      Bus.$emit("RUN_ANIMATIONS", this.activeElement.uuid, animationData);
+      Bus.$emit('RUN_ANIMATIONS', this.activeElement.uuid, animationData);
     }
   }
 };

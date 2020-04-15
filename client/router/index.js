@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
 
 /**  各个模块 */
 export default new Router({
@@ -50,4 +50,4 @@ export default new Router({
       noNeedLogin: true
     }
   }]
-})
+});

@@ -6,7 +6,7 @@ module.exports = async (ctx, next) => {
         code: 200,
         body: ctx.body,
         status: true
-      }
+      };
     } else if (ctx.status === 201) { // 201处理模板引擎渲染
 
     } else {
@@ -15,7 +15,7 @@ module.exports = async (ctx, next) => {
         code: ctx.status,
         body: '接口请求失败',
         status: false
-      }
+      };
     }
   }).catch((err) => {
     if (err.status === 401) {
@@ -24,9 +24,9 @@ module.exports = async (ctx, next) => {
         code: 401,
         status: false,
         message: '登录过期，请重新登录'
-      }
+      };
     } else {
-      throw err
+      throw err;
     }
-  })
-}
+  });
+};

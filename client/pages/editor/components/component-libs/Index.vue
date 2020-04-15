@@ -31,13 +31,13 @@
 </template>
 
 <script>
-import { camelCase } from "lodash";
-import eleConfig from "../../ele-config";
-import { _qk_register_components_object } from "@client/plugins/index";
+import { camelCase } from 'lodash';
+import eleConfig from '../../ele-config';
+import { _qk_register_components_object } from '@client/plugins/index';
 window._qk_register_components_object = _qk_register_components_object;
 // console.log(_qk_register_components_object);
 export default {
-  name: "component-libs",
+  name: 'component-libs',
   data() {
     return {
       componentsList: eleConfig
@@ -50,7 +50,7 @@ export default {
      */
     handleClick(item) {
       let props = this.getComponentProps(item.elName);
-      this.$store.dispatch("addElement", { ...item, needProps: props });
+      this.$store.dispatch('addElement', { ...item, needProps: props });
     },
     /**
      * 根据elname获取组件默认props数据

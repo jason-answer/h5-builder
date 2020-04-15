@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const Schema = mongoose.Schema
-const ObjectId = mongoose.Types.ObjectId
+const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId;
 
 // Schema
 const usersSchema = new Schema({
@@ -14,7 +14,7 @@ const usersSchema = new Schema({
   avatar: { type: String, default: '' },
   roles: { type: String, default: '' },
   type: { type: String, enum: ['site', 'third'], default: 'site' } //site用户是网站注册用户, third是第三方登录过来的用户
-})
+});
 
 // Model
 const users = mongoose.model('user', usersSchema, 'user');

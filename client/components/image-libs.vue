@@ -25,17 +25,17 @@
 </template>
 
 <script>
-import $bus from "@client/eventBus";
+import $bus from '@client/eventBus';
 
 export default {
-  name: "image-libs",
+  name: 'image-libs',
   data() {
     return {
       dialogVisible: false,
       uploading: false,
       hasLoadData: false,
       imageList: [],
-      selectId: ""
+      selectId: ''
     };
   },
   watch: {
@@ -46,7 +46,7 @@ export default {
     }
   },
   created() {
-    $bus.$on("show-select-image", selectId => {
+    $bus.$on('show-select-image', selectId => {
       this.dialogVisible = true;
       this.selectId = selectId;
     });
@@ -54,13 +54,13 @@ export default {
   methods: {
     beforeUpload(file) {
       if (file.size > 1 * 1024 * 1024) {
-        this.$message.error("psd文件不能超过1M！");
+        this.$message.error('psd文件不能超过1M！');
         return;
       }
-      let temp1 = file.name.split(".");
+      let temp1 = file.name.split('.');
       let temp = temp1[temp1.length - 1];
-      if (!["jpg", "png", "gif"].includes(temp)) {
-        this.$message.error("请上传jpg/png/gif文件");
+      if (!['jpg', 'png', 'gif'].includes(temp)) {
+        this.$message.error('请上传jpg/png/gif文件');
         return false;
       }
       this.uploadPsd(file);
@@ -68,10 +68,10 @@ export default {
     },
     uploadPsd(file) {
       let params = new FormData();
-      params.append("file", file);
+      params.append('file', file);
       this.uploading = true;
       this.$axios
-        .post("/person/uploadImage", params)
+        .post('/person/uploadImage', params)
         .then(res => {
           this.uploading = false;
           this.imageList.splice(0, 0, res.body);
@@ -82,7 +82,7 @@ export default {
     },
     getMyImages() {
       this.hasLoadData = true;
-      this.$axios.get("/person/images").then(res => {
+      this.$axios.get('/person/images').then(res => {
         this.imageList = res.body || [];
       });
     },
@@ -91,7 +91,7 @@ export default {
      * @param url
      */
     handleImageClick(url) {
-      $bus.$emit("select-image", this.selectId, url);
+      $bus.$emit('select-image', this.selectId, url);
       this.dialogVisible = false;
     }
   }

@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import { Swiper, Slide } from "vue-swiper-component";
+import { Swiper, Slide } from 'vue-swiper-component';
 export default {
-  name: "QkImageCarousel", // 这个名字很重要，它就是未来的标签名<qk-text></qk-text>
+  name: 'QkImageCarousel', // 这个名字很重要，它就是未来的标签名<qk-text></qk-text>
   components: {
     Swiper,
     Slide
@@ -23,9 +23,9 @@ export default {
       type: Array,
       default: () => {
         return [
-          "http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg",
-          "http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg",
-          "http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg"
+          'http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg',
+          'http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg',
+          'http://seopic.699pic.com/photo/50051/4111.jpg_wh1200.jpg'
         ];
       }
     },

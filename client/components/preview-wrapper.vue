@@ -3,7 +3,6 @@
     <div class="setting-bg" />
     <div class="left-panel">
       <!-- <div class="iframe-wrapper" :style="{width: $config.canvasH5Width + 'px', height: $config.canvasH5Height + 'px'}">
-       
       </div> -->
       <div class="marvel-device iphone-x">
         <div class="notch">
@@ -40,7 +39,7 @@
 
 <script>
 export default {
-  name: "preview-page",
+  name: 'preview-page',
   props: {
     pageId: String
   },
@@ -50,7 +49,7 @@ export default {
   created() {},
   methods: {
     closePreview() {
-      this.$emit("closePreview", false);
+      this.$emit('closePreview', false);
     }
   }
 };

@@ -48,8 +48,8 @@
 
 <script>
 // import editorProjectConfig from '../editor/DataModel'
-import previewPage from "./components/preview";
-import notFundData from "@client/components/notFundData";
+import previewPage from './components/preview';
+import notFundData from '@client/components/notFundData';
 export default {
   components: {
     previewPage,
@@ -58,18 +58,18 @@ export default {
   data() {
     return {
       loading: false,
-      defaultCoverImage: require("@client/common/images/quark--pagecover-image.png"),
+      defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
       pageList: [],
-      previewId: "",
+      previewId: '',
       showPreview: false,
       searchParams: {
-        pageMode: "h5"
+        pageMode: 'h5'
       }
     };
   },
   created() {
     this.getPageList();
-    this.previewId = this.$route.query.previewId || "";
+    this.previewId = this.$route.query.previewId || '';
     if (this.previewId) {
       this.showPreview = true;
     }
@@ -80,7 +80,7 @@ export default {
      */
     getPageList() {
       this.$axios
-        .get("/page/templateShop/list", this.searchParams)
+        .get('/page/templateShop/list', this.searchParams)
         .then(res => {
           this.pageList = res.body || [];
         });
@@ -91,7 +91,7 @@ export default {
      */
     editPage(id) {
       this.$router.push({
-        path: "editor",
+        path: 'editor',
         query: { id: id, isTemplate: true }
       });
     },
@@ -101,17 +101,17 @@ export default {
     copyPage(id) {
       this.loading = true;
       this.$axios
-        .post("/page/copy/" + id)
+        .post('/page/copy/' + id)
         .then(res => {
           this.loading = false;
-          this.$confirm('已添加至"我的作品"中?', "提示", {
-            confirmButtonText: "立即编辑",
-            cancelButtonText: "再逛逛",
-            type: "success"
+          this.$confirm('已添加至"我的作品"中?', '提示', {
+            confirmButtonText: '立即编辑',
+            cancelButtonText: '再逛逛',
+            type: 'success'
           })
             .then(() => {
               this.$router.push({
-                path: "editor",
+                path: 'editor',
                 query: { id: res.body._id }
               });
             })
@@ -127,14 +127,14 @@ export default {
      * @param index
      */
     deletePage(id, index) {
-      this.$confirm("此操作将永久删除该页面, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('此操作将永久删除该页面, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       }).then(() => {
         this.loading = true;
         this.$axios
-          .delete("/page/delete/" + id)
+          .delete('/page/delete/' + id)
           .then(() => {
             this.loading = false;
             // 从页面删除
@@ -160,11 +160,11 @@ export default {
     setAsTemplate(id) {
       this.loading = true;
       this.$axios
-        .post("/page/setTemplate/" + id)
+        .post('/page/setTemplate/' + id)
         .then(() => {
           this.loading = false;
-          this.$alert("已添加到我的模板库", "操作提示", {
-            confirmButtonText: "确定"
+          this.$alert('已添加到我的模板库', '操作提示', {
+            confirmButtonText: '确定'
           });
         })
         .catch(() => {

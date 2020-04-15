@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "template-libs"
+  name: 'template-libs'
 };
 </script>
 

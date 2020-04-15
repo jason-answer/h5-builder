@@ -6,13 +6,13 @@
 
 <script>
 export default {
-  name: "attr-qk-musicSrc",
+  name: 'attr-qk-musicSrc',
   props: {
     musicSrc: String
   },
   data() {
     return {
-      tempValue: ""
+      tempValue: ''
     };
   },
   watch: {
@@ -20,7 +20,7 @@ export default {
       this.tempValue = val;
     },
     tempValue() {
-      this.$emit("update:musicSrc", this.tempValue);
+      this.$emit('update:musicSrc', this.tempValue);
     }
   },
   mounted() {

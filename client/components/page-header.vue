@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import userHeaderBar from "./user-header-bar";
-import { mapState } from "vuex";
+import userHeaderBar from './user-header-bar';
+import { mapState } from 'vuex';
 export default {
-  name: "page-header",
+  name: 'page-header',
   components: {
     userHeaderBar
   },
@@ -30,11 +30,11 @@ export default {
   },
   methods: {
     logoutFn() {
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: 'Login' });
     },
     goLogin() {
       this.$mUtils.Cookie.set(
-        "beforeLoginUrl",
+        'beforeLoginUrl',
         encodeURIComponent(this.$route.fullPath),
         1 / 24 / 60,
         window.location.host,
@@ -43,7 +43,7 @@ export default {
           window.location.pathname.length - 1
         )
       ); // 保存用户进入的url
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: 'Login' });
     }
   }
 };

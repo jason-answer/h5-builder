@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { VueCropper } from "vue-cropper";
+import { VueCropper } from 'vue-cropper';
 
 export default {
   components: {
@@ -34,13 +34,13 @@ export default {
     return {
       loading: false,
       dialogVisible: false,
-      defaultCoverImage: require("@client/common/images/quark--pagecover-image.png"),
+      defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
       option: {
-        img: "",
+        img: '',
         outputSize: 1, //剪切后的图片质量（0.1-1）
         full: false, //输出原图比例截图 props名full
         autoCrop: true,
-        outputType: "png",
+        outputType: 'png',
         // 只有自动截图开启 宽度高度才生效
         autoCropWidth: 120,
         autoCropHeight: 120,
@@ -56,13 +56,13 @@ export default {
       this.$refs.cropper.getCropBlob(data => {
         let file = blobToFile(data);
         let params = new FormData();
-        params.append("file", file);
+        params.append('file', file);
         this.$axios
-          .post("/common/uploadFile", params)
+          .post('/common/uploadFile', params)
           .then(res => {
             this.loading = false;
             this.dialogVisible = false;
-            this.$emit("update:url", res.body);
+            this.$emit('update:url', res.body);
           })
           .catch(() => {
             this.loading = false;
@@ -76,14 +76,14 @@ export default {
      */
     beforeUpload(file) {
       if (file.size > 4 * 1024 * 1024) {
-        this.$message.error("上传图片不能超过4M！");
+        this.$message.error('上传图片不能超过4M！');
         return;
       }
       var reader = new FileReader();
       let _this = this;
       reader.onload = e => {
         let data;
-        if (typeof e.target.result === "object") {
+        if (typeof e.target.result === 'object') {
           // 把Array Buffer转化为blob 如果是base64不需要
           data = window.URL.createObjectURL(new Blob([e.target.result]));
         } else {

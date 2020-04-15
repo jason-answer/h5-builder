@@ -50,8 +50,8 @@
 </template>
 
 <script>
-import previewWrapper from "@client/components/preview-wrapper";
-import QrcodeVue from "qrcode.vue";
+import previewWrapper from '@client/components/preview-wrapper';
+import QrcodeVue from 'qrcode.vue';
 export default {
   components: {
     previewWrapper,
@@ -63,13 +63,13 @@ export default {
   data() {
     return {
       loading: true,
-      defaultCoverImage: require("@client/common/images/quark--pagecover-image.png"),
+      defaultCoverImage: require('@client/common/images/quark--pagecover-image.png'),
       pageData: {}
     };
   },
   computed: {
     pageLink() {
-      return this.$config.baseURL + "/page/view/" + this.pageId;
+      return this.$config.baseURL + '/page/view/' + this.pageId;
     },
     shareData() {
       if (!this.pageData.shareConfig) {
@@ -98,12 +98,12 @@ export default {
      * 关闭弹窗事件
      */
     closePreview() {
-      this.$emit("closePreview", false);
+      this.$emit('closePreview', false);
     },
     getData() {
       this.loading = true;
       this.$axios
-        .get("/page/detail/" + this.pageId)
+        .get('/page/detail/' + this.pageId)
         .then(res => {
           this.loading = false;
           this.pageData = res.body;
@@ -114,7 +114,7 @@ export default {
     },
     doCopy: function() {
       this.$copyText(this.pageLink).then(() => {
-        this.$message.success("已复制");
+        this.$message.success('已复制');
       });
     }
   }

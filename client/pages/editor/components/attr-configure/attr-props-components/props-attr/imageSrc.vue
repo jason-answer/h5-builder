@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import imageSelect from "@client/components/image-select";
+import imageSelect from '@client/components/image-select';
 export default {
-  name: "attr-qk-imageSrc",
+  name: 'attr-qk-imageSrc',
   components: {
     imageSelect
   },
@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      tempValue: ""
+      tempValue: ''
     };
   },
   watch: {
@@ -24,7 +24,7 @@ export default {
       this.tempValue = val;
     },
     tempValue() {
-      this.$emit("update:imageSrc", this.tempValue);
+      this.$emit('update:imageSrc', this.tempValue);
     }
   },
   mounted() {

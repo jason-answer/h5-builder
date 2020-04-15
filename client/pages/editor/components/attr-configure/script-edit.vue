@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters } from 'vuex';
 export default {
   computed: {
     ...mapState({
@@ -22,10 +22,10 @@ export default {
       activeElementUUID: state => state.editor.activeElementUUID
     }),
     ...mapGetters([
-      "currentPageIndex",
-      "activeElementIndex",
-      "activeElement",
-      "activePage"
+      'currentPageIndex',
+      'activeElementIndex',
+      'activeElement',
+      'activePage'
     ])
   }
 };

@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { _qk_register_components_object } from "@client/plugins/index";
-import runAnimations from "@client/common/js/runAnimations";
-import elementEvents from "@client/mixins/elementEvents";
+import { _qk_register_components_object } from '@client/plugins/index';
+import runAnimations from '@client/common/js/runAnimations';
+import elementEvents from '@client/mixins/elementEvents';
 
 export default {
-  name: "components-template",
+  name: 'components-template',
   components: {
     // 批量注册qk组件
     ..._qk_register_components_object
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     async handleClick() {
-      this.$emit("handleElementClick", this.element.events, this.element);
+      this.$emit('handleElementClick', this.element.events, this.element);
     }
   }
 };

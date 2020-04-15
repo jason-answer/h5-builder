@@ -9,15 +9,15 @@
 
 <script>
 export default {
-  name: "qkBgMusic",
+  name: 'qkBgMusic',
   props: {
     musicSrc: {
       type: String,
-      default: "http://gaokao.newhope.cn/static/fly_new_hope.mp3"
+      default: 'http://gaokao.newhope.cn/static/fly_new_hope.mp3'
     },
     imageSrc: {
       type: String,
-      default: require("./music.png")
+      default: require('./music.png')
     }
   },
   data() {
@@ -28,12 +28,12 @@ export default {
   },
   created() {},
   mounted() {
-    this.audioEl = document.getElementById("video-play-audio");
+    this.audioEl = document.getElementById('video-play-audio');
     this.audioEl.load();
     const audio = this.$refs.audioPlayer;
     audio.play().catch(() => {
       this.playError = true;
-      let event = ["click", "WeixinJSBridgeReady"]; // "touchstart"
+      let event = ['click', 'WeixinJSBridgeReady']; // "touchstart"
       let pageClick = () => {
         if (this.playError) {
           this.playError = false;

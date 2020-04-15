@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "attr-qk-rows",
+  name: 'attr-qk-rows',
   props: {
     rows: Number
   },
@@ -20,7 +20,7 @@ export default {
       this.temp = val;
     },
     tempText() {
-      this.$emit("update:rows", this.temp);
+      this.$emit('update:rows', this.temp);
     }
   },
   mounted() {

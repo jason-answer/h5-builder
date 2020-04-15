@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "image-libs"
+  name: 'image-libs'
 };
 </script>
 

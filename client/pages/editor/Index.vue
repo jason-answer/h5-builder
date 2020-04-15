@@ -53,24 +53,24 @@
 </template>
 
 <script>
-import componentLibs from "./components/component-libs/Index";
-import pageManage from "./components/page-manage";
-import templateLibs from "./components/template-libs";
-import editorPan from "./components/editor-panel/Index";
+import componentLibs from './components/component-libs/Index';
+import pageManage from './components/page-manage';
+import templateLibs from './components/template-libs';
+import editorPan from './components/editor-panel/Index';
 // 属性编辑相关组件
-import attrEdit from "./components/attr-configure/attr-edit";
-import animationEdit from "./components/attr-configure/animation-edit";
-import eventEdit from "./components/attr-configure/event-edit";
-import pageAttrEdit from "./components/attr-configure/page-attr-edit";
-import scriptEdit from "./components/attr-configure/script-edit";
+import attrEdit from './components/attr-configure/attr-edit';
+import animationEdit from './components/attr-configure/animation-edit';
+import eventEdit from './components/attr-configure/event-edit';
+import pageAttrEdit from './components/attr-configure/page-attr-edit';
+import scriptEdit from './components/attr-configure/script-edit';
 
-import controlBar from "./components/control-bar";
+import controlBar from './components/control-bar';
 
-import previewPage from "./components/preview";
-import imageLibs from "@client/components/image-libs";
+import previewPage from './components/preview';
+import imageLibs from '@client/components/image-libs';
 
-import { mapState, mapGetters } from "vuex";
-import html2canvas from "html2canvas";
+import { mapState, mapGetters } from 'vuex';
+import html2canvas from 'html2canvas';
 
 export default {
   components: {
@@ -89,27 +89,27 @@ export default {
   },
   data() {
     return {
-      id: "", // 当前页面id
+      id: '', // 当前页面id
       loading: false,
       showPreview: false,
-      activeAttr: "属性",
-      activeSideBar: "componentLibs",
+      activeAttr: '属性',
+      activeSideBar: 'componentLibs',
       sidebarMenus: [
         {
-          label: "组件列表",
-          value: "componentLibs",
-          elementUiIcon: "el-icon-s-operation"
+          label: '组件列表',
+          value: 'componentLibs',
+          elementUiIcon: 'el-icon-s-operation'
         },
         {
-          label: "页面管理",
-          pageMode: "h5",
-          value: "pageManage",
-          elementUiIcon: "el-icon-document"
+          label: '页面管理',
+          pageMode: 'h5',
+          value: 'pageManage',
+          elementUiIcon: 'el-icon-document'
         },
         {
-          label: "模板库",
-          value: "templateLibs",
-          elementUiIcon: "el-icon-files"
+          label: '模板库',
+          value: 'templateLibs',
+          elementUiIcon: 'el-icon-files'
         }
       ],
       canvasConfig: {
@@ -123,10 +123,10 @@ export default {
       activePageUUID: state => state.editor.activePageUUID,
       activeElementUUID: state => state.editor.activeElementUUID
     }),
-    ...mapGetters(["pageMode"])
+    ...mapGetters(['pageMode'])
   },
   created() {
-    this.$store.dispatch("setPrjectData");
+    this.$store.dispatch('setPrjectData');
     this.id = this.$route.query.id;
     this.initPageData();
   },
@@ -137,10 +137,10 @@ export default {
     initPageData() {
       this.loading = true;
       this.$axios
-        .get("/page/detail/" + this.id)
+        .get('/page/detail/' + this.id)
         .then(res => {
           this.loading = false;
-          this.$store.dispatch("setPrjectData", {
+          this.$store.dispatch('setPrjectData', {
             ...res.body
           });
         })
@@ -154,8 +154,8 @@ export default {
     async saveFn() {
       // await this.screenshots()
       // 提交数据再预览
-      this.$axios.post("/page/update/" + this.id, this.projectData).then(() => {
-        this.$message.success("保存成功!");
+      this.$axios.post('/page/update/' + this.id, this.projectData).then(() => {
+        this.$message.success('保存成功!');
         this.showPreview = false;
       });
     },
@@ -166,12 +166,12 @@ export default {
       // await this.screenshots()
       // 提交数据再预览
       this.$axios
-        .post("/page/publish/" + this.id, this.projectData)
+        .post('/page/publish/' + this.id, this.projectData)
         .then(() => {
-          this.$message.success("发布成功!");
+          this.$message.success('发布成功!');
           this.showPreview = false;
           this.$router.push({
-            path: "page-list",
+            path: 'page-list',
             query: { previewId: this.id }
           });
         });
@@ -179,7 +179,7 @@ export default {
     async showPreviewFn() {
       // await this.screenshots()
       // 提交数据再预览
-      this.$axios.post("/page/update/" + this.id, this.projectData).then(() => {
+      this.$axios.post('/page/update/' + this.id, this.projectData).then(() => {
         this.showPreview = true;
       });
     },
@@ -187,13 +187,13 @@ export default {
      * 退出
      */
     cancelFn() {
-      this.$confirm("确认退出编辑?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('确认退出编辑?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
-          this.$router.push("/page-list");
+          this.$router.push('/page-list');
         })
         .catch(() => {});
     },
@@ -201,20 +201,20 @@ export default {
      * 提供截屏作为项目主图
      */
     screenshots() {
-      const el = document.querySelector("#canvas-panel");
+      const el = document.querySelector('#canvas-panel');
       return new Promise((resolve, reject) => {
         html2canvas(el, {
           proxy: `${this.$config.baseURL}/common/html2canvas/corsproxy`
         }).then(canvas => {
-          const dataUrl = canvas.toDataURL("image/jpeg", 0.6);
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
           const blob = this.$mUtils.dataURItoBlob(dataUrl);
-          const file = new window.File([blob], +new Date() + ".png", {
-            type: "image/png"
+          const file = new window.File([blob], +new Date() + '.png', {
+            type: 'image/png'
           });
           let params = new FormData();
-          params.append("file", file);
+          params.append('file', file);
           this.$axios
-            .post("/common/uploadFile", params)
+            .post('/common/uploadFile', params)
             .then(res => {
               // 替换主图链接
               this.projectData.coverImage = res.body;
@@ -237,8 +237,8 @@ export default {
       elementsList.forEach(item => {
         let { width, height, top, left, imageSrc, opacity, zIndex } = item;
         setTimeout(() => {
-          this.$store.dispatch("addElement", {
-            elName: "qk-image",
+          this.$store.dispatch('addElement', {
+            elName: 'qk-image',
             defaultStyle: {
               width: width * scalingRatio,
               height: height * scalingRatio,

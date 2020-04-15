@@ -2,12 +2,12 @@
  * 上传相关
  */
 import OSS from 'ali-oss';
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
 
-    }
+    };
   },
   computed: {
     ...mapState({
@@ -16,7 +16,7 @@ export default {
   },
   created() {
     if (!this.ossConfig.stsToken) {
-      this.$store.dispatch('getOssToken')
+      this.$store.dispatch('getOssToken');
     }
   },
   methods: {
@@ -30,7 +30,7 @@ export default {
             bucket: this.ossConfig.bucket,
             region: this.ossConfig.region
           });
-          let bojName = 'dwwb/portal/web_docs/' + new Date().getTime() + '/'
+          let bojName = 'dwwb/portal/web_docs/' + new Date().getTime() + '/';
           async function putBlob() {
             try {
               let result = await client.put(bojName + file.name, file);
@@ -42,8 +42,8 @@ export default {
           putBlob();
         }).catch(err => {
           reject(err);
-        })
-      })
+        });
+      });
     }
   }
-}
+};

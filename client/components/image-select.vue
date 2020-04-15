@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import $bus from "@client/eventBus";
+import $bus from '@client/eventBus';
 
 export default {
   props: {
@@ -29,7 +29,7 @@ export default {
     return {
       // 唯一得id用于选择图片后事件通知
       selectId: +new Date(),
-      tempValue: ""
+      tempValue: ''
     };
   },
   watch: {
@@ -41,7 +41,7 @@ export default {
     }
   },
   created() {
-    $bus.$on("select-image", this.changeIamge);
+    $bus.$on('select-image', this.changeIamge);
     this.tempValue = this.url;
   },
   methods: {
@@ -49,14 +49,14 @@ export default {
       if (id !== this.selectId) {
         return;
       }
-      this.$emit("update:url", url);
-      this.$emit("change", url);
+      this.$emit('update:url', url);
+      this.$emit('change', url);
     },
     /**
      * 点击弹出选择图片弹窗
      */
     handleClick() {
-      $bus.$emit("show-select-image", this.selectId);
+      $bus.$emit('show-select-image', this.selectId);
     }
   }
 };

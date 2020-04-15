@@ -11,15 +11,15 @@
 
 <script>
 export default {
-  name: "notFundData",
+  name: 'notFundData',
   props: {
     width: {
       type: String,
-      default: "128px"
+      default: '128px'
     },
     height: {
       type: String,
-      default: "86px"
+      default: '86px'
     }
   }
 };

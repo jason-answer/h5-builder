@@ -10,7 +10,7 @@ const uploadimg = ctx => {
   // 扩展名
   let extname = path.extname(file.name);
   // 判断文件夹是否存在
-  fs.existsSync(path.join(ctx.state.SERVER_PATH, 'public/upload_static/images')) || fs.mkdirSync(path.join(ctx.state.SERVER_PATH, 'public/upload_static/images'))
+  fs.existsSync(path.join(ctx.state.SERVER_PATH, 'public/upload_static/images')) || fs.mkdirSync(path.join(ctx.state.SERVER_PATH, 'public/upload_static/images'));
   // 创建可读流
   const reader = fs.createReadStream(file.path);
   let filePath = path.join(ctx.state.SERVER_PATH, 'public/upload_static/images') + `/${timestamps}${extname}`;
@@ -24,6 +24,6 @@ const uploadimg = ctx => {
   reader.pipe(upStream);
 
   return imageUrl;
-}
+};
 
 module.exports = uploadimg;

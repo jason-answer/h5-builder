@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import notFundData from "@client/components/notFundData";
+import notFundData from '@client/components/notFundData';
 export default {
   components: {
     notFundData
